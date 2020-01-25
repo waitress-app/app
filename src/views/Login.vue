@@ -6,9 +6,7 @@
           <img class="c-frame__logo" v-if="!user" alt="Vue logo" src="../assets/logo.png">
         </transition>
         <transition name="slide-fade-reverse">
-          <div class="c-frame__picture" v-if="user">
-            <img class="pa-1" :src="user.picture" alt="user pic">
-          </div>
+          <CAvatar class="c-frame__picture" v-if="user" :src="user.picture" alt="User avatar" />
         </transition>
       </div>
       <CButton :disabled="loadingPicture || !user" @click="logIn">Entrar</CButton>
@@ -21,12 +19,14 @@
 
 <script>
 // @ is an alias to /src
+import CAvatar from '@/components/core/Avatar'
 import CButton from '@/components/core/Button'
 import CPaper from '@/components/core/Paper'
 import { mapActions } from 'vuex'
 export default {
   name: 'login',
   components: {
+    CAvatar,
     CButton,
     CPaper
   },
@@ -68,7 +68,7 @@ export default {
         this.user = {
           id: user.login.uuid,
           picture: user.picture.large,
-          name: `${user.name.first} ${user.name.last}`
+          name: `${user.name.first}`
         }
       } else {
         alert('HTTP-Error: ' + response.status)
@@ -99,10 +99,4 @@ export default {
     height 128px
     width 128px
     left: 50%
-    border-radius 100%
-    background linear-gradient(135deg, #bc4cf6, #7873ef)
-    &>img
-      height 120px
-      width 120px
-      border-radius 100%
 </style>
