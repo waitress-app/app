@@ -105,20 +105,4 @@ export default {
       height 120px
       width 120px
       border-radius 100%
-
-.slide-fade-enter-active, .slide-fade-reverse-enter-active {
-  transition: all .8s ease;
-}
-.slide-fade-leave-active, .slide-fade-reverse-leave-active {
-  transition: all .8s ease;
-}
-
-.slide-fade-enter, .slide-fade-leave-to {
-  transform: translateX(40px);
-  opacity: 0;
-}
-.slide-fade-reverse-enter, .slide-fade-reverse-leave-to {
-  transform: translateX(-40px);
-  opacity: 0;
-}
 </style>

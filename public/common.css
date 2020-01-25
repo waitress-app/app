@@ -894,3 +894,19 @@
 .c-app .ml-auto {
   margin-left: auto !important;
 }
+
+.slide-fade-enter-active, .slide-fade-reverse-enter-active {
+  transition: all .8s ease;
+}
+.slide-fade-leave-active, .slide-fade-reverse-leave-active {
+  transition: all .8s ease;
+}
+
+.slide-fade-enter, .slide-fade-leave-to {
+  transform: translateX(40px);
+  opacity: 0;
+}
+.slide-fade-reverse-enter, .slide-fade-reverse-leave-to {
+  transform: translateX(-40px);
+  opacity: 0;
+}

@@ -1,7 +1,9 @@
 <template>
   <div id="app" class="c-app">
     <Loading />
-    <router-view/>
+    <transition name="slide-fade">
+      <router-view/>
+    </transition>
   </div>
 </template>
 
