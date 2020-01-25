@@ -1,15 +1,22 @@
-<template>
-  <button class="c-button" :class="{'c-button--disabled': disabled}" @click="$emit('click')">
-    <slot />
-  </button>
-</template>
-
 <script>
 export default {
   props: {
     disabled: {
       type: Boolean
     }
+  },
+  render (h) {
+    return h('button', {
+      class: {
+        'c-button': true,
+        'c-button--disabled': this.disabled
+      },
+      on: {
+        click: () => {
+          this.$emit('click')
+        }
+      }
+    }, this.$slots.default)
   }
 }
 </script>

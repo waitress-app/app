@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="c-login mt-12 mx-auto">
+    <CPaper class="c-login mt-12 mx-auto">
       <div class="c-frame my-6">
         <transition name="slide-fade">
           <img class="c-frame__logo" v-if="!user" alt="Vue logo" src="../assets/logo.png">
@@ -15,18 +15,20 @@
       <p v-if="user" class="c-link caption" @click="refreshUser">
         não é {{ user.name }}?
       </p>
-    </div>
+    </CPaper>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import CButton from '@/components/core/Button.vue'
+import CButton from '@/components/core/Button'
+import CPaper from '@/components/core/Paper'
 import { mapActions } from 'vuex'
 export default {
   name: 'login',
   components: {
-    CButton
+    CButton,
+    CPaper
   },
   data () {
     return {
@@ -83,9 +85,6 @@ export default {
 <style lang="stylus">
 .c-login
   text-align center
-  border 1px solid #f3f3f3
-  box-shadow -3px 2px 4px 1px #68686817
-  border-radius 8px
   width 250px
   height 260px
 .c-frame
