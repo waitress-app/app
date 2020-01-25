@@ -1,7 +1,7 @@
 <template>
   <div id="app" class="c-app">
     <Loading />
-    <transition name="slide-fade">
+    <transition name="fade" mode="out-in">
       <router-view/>
     </transition>
   </div>
