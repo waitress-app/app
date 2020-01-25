@@ -11,7 +11,7 @@
           </div>
         </transition>
       </div>
-      <CButton :disabled="loading || !user">Entrar</CButton>
+      <CButton :disabled="loadingPicture || !user" @click="logIn">Entrar</CButton>
       <p v-if="user" class="c-link caption" @click="refreshUser">
         não é {{ user.name }}?
       </p>
@@ -22,19 +22,35 @@
 <script>
 // @ is an alias to /src
 import CButton from '@/components/core/Button.vue'
-
+import { mapActions } from 'vuex'
 export default {
-  name: 'home',
+  name: 'login',
   components: {
     CButton
   },
   data () {
     return {
-      loading: false,
-      user: null
+      loadingPicture: false,
+      user: null,
+      loading: false
     }
   },
   methods: {
+    ...mapActions('auth', ['authentication']),
+    async logIn () {
+      if (!this.user) return
+
+      try {
+        this.loading = true
+        await this.authentication(this.user)
+        this.$router.push({ name: 'home' })
+        this.loading = false
+      } catch (err) {
+        this.loading = false
+        console.log(err)
+        alert('Error')
+      }
+    },
     refreshUser () {
       this.user = null
       setTimeout(() => {
@@ -42,7 +58,7 @@ export default {
       }, 600)
     },
     async getUser () {
-      this.loading = true
+      this.loadingPicture = true
       const response = await fetch('https://randomuser.me/api/')
       if (response.ok) { // if HTTP-status is 200-299
         const { results: userList } = await response.json()
@@ -55,7 +71,7 @@ export default {
       } else {
         alert('HTTP-Error: ' + response.status)
       }
-      this.loading = false
+      this.loadingPicture = false
     }
   },
   mounted () {
