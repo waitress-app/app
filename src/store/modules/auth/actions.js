@@ -1,6 +1,9 @@
+import router from '@/router'
 export default {
-  logOut: async ({ commit }) => {
-    commit('clear')
+  logOut: ({ commit }) => {
+    router.push({ name: 'login' }).then(result => {
+      commit('clear')
+    })
   },
   authentication: async ({ commit }, payload) => {
     // get some api / sleep

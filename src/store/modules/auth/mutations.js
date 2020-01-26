@@ -4,8 +4,6 @@ export default {
     state.user = payload
   },
   clear: (state) => {
-    state.user.id = null
-    state.user.name = null
-    state.user.picture = null
+    state.user = null
   }
 }

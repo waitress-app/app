@@ -8,7 +8,7 @@
         <h2 class="title my-0">
           {{ user.name }}
         </h2>
-        <p class="c-link my-0">
+        <p class="c-link my-0" @click="logOut">
           sair
         </p>
       </div>
@@ -16,12 +16,15 @@
         <CTips :goal="100" :tips="54.32" />
       </div>
     </div>
-    <CTabs v-model="tab" :items="tabs"/>
+    <CTabs v-model="tab" :items="tabs" class="mb-8"/>
+    <transition name="fade" mode="out-in">
+      <router-view/>
+    </transition>
   </div>
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
 import CAvatar from '@/components/core/Avatar'
 import CTips from '@/components/Tips'
 import CTabs from '@/components/core/Tabs'
@@ -33,11 +36,34 @@ export default {
   },
   data () {
     return {
-      tab: 'Mesas',
-      tabs: ['Mesas', 'Pedidos', 'Menu']
+      tabs: [
+        {
+          text: 'Mesas',
+          route: 'tables-list'
+        },
+        {
+          text: 'Pedidos',
+          route: 'orders-list'
+        },
+        {
+          text: 'Menu',
+          route: 'menu'
+        }
+      ]
     }
   },
+  methods: {
+    ...mapActions('auth', ['logOut'])
+  },
   computed: {
+    tab: {
+      get () {
+        return this.$route.name
+      },
+      set (value) {
+        this.$router.push({ name: value })
+      }
+    },
     ...mapGetters('auth', ['user'])
   }
 }
