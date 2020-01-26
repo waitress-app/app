@@ -73,6 +73,8 @@ export default {
 // .c-home
 .c-navbar
   display flex
+  max-width 1184px
+  margin auto
   align-items center
   &__avatar
     flex-shrink 1

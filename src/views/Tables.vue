@@ -120,8 +120,10 @@ export default {
 <style lang="stylus">
 .c-tables
     display flex
-    justify-content space-around
+    justify-content space-between
     flex-wrap wrap
+    max-width 1184px
+    margin auto
 .c-table
   color #8790a9
   padding 8px
