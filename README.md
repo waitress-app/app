@@ -1,5 +1,11 @@
 # waitress
 
+[flaticon](https://www.flaticon.com) - Icons made by:
+[photo3idea-studio](https://www.flaticon.com/authors/photo3idea-studio)
+[smashicons](https://www.flaticon.com/authors/smashicons)
+[itim2101](https://www.flaticon.com/authors/itim2101)
+[freepik](https://www.flaticon.com/authors/freepik)
+
 ## Project setup
 ```
 yarn install
