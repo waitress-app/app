@@ -11,16 +11,12 @@ const router = new VueRouter({
 })
 
 router.beforeEach((to, from, next) => {
-  if (to.name === from.name) {
-    next()
+  if (to.matched.some(record => record.meta.requiresAuth)) {
+    store.getters['auth/user'] === null
+      ? next({ name: 'login' })
+      : next()
   } else {
-    if (to.matched.some(record => record.meta.requiresAuth) && to.meta.requiresAuth === undefined) {
-      store.getters['auth/user'].id === null
-        ? next({ name: 'login' })
-        : next()
-    } else {
-      next()
-    }
+    next()
   }
 })
 

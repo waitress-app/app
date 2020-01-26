@@ -45,7 +45,7 @@ export default {
       try {
         this.loading = true
         await this.authentication(this.user)
-        this.$router.push({ name: 'home' })
+        this.$router.push({ name: 'tables-list' })
         this.loading = false
       } catch (err) {
         this.loading = false

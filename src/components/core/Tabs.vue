@@ -1,13 +1,13 @@
 <template>
   <div class="c-tabs" :style="{'width': `${items.length * 100}px`}">
     <div class="c-tabs__item"
-      :class="{'c-tabs__item--active': item === value}"
-      @click="$emit('input', item)"
+      :class="{'c-tabs__item--active': item.route === value}"
+      @click="$emit('input', item.route)"
       v-for="item in items"
-      :key="item">
-      {{ item }}
+      :key="item.route">
+      {{ item.text }}
     </div>
-    <div class="c-tabs__slider" :style="{'transform': `translateX(${items.findIndex(elem => elem === value) * 100}px)`}"></div>
+    <div class="c-tabs__slider" :style="{'transform': `translateX(${items.findIndex(elem => elem.route === value) * 100}px)`}"></div>
   </div>
 </template>
 

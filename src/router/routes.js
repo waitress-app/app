@@ -1,5 +1,8 @@
 const Login = () => import('@/views/Login')
 const Home = () => import('@/views/Home')
+const Tables = () => import('@/views/Tables')
+const Orders = () => import('@/views/Orders')
+const Menu = () => import('@/views/Menu')
 
 export default [
   {
@@ -8,9 +11,26 @@ export default [
     component: Login
   },
   {
-    path: '/',
-    name: 'home',
     meta: { requiresAuth: true },
-    component: Home
+    path: '/',
+    component: Home,
+    children: [
+      {
+        path: '/tables',
+        alias: '/',
+        name: 'tables-list',
+        component: Tables
+      },
+      {
+        path: '/orders',
+        name: 'orders-list',
+        component: Orders
+      },
+      {
+        path: '/menu',
+        name: 'menu',
+        component: Menu
+      }
+    ]
   }
 ]
