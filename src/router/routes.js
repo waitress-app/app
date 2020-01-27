@@ -1,6 +1,7 @@
 const Login = () => import('@/views/Login')
 const Home = () => import('@/views/Home')
 const Tables = () => import('@/views/Tables')
+const Table = () => import('@/views/Table')
 const Orders = () => import('@/views/Orders')
 const Menu = () => import('@/views/Menu')
 
@@ -32,5 +33,12 @@ export default [
         component: Menu
       }
     ]
+  },
+  {
+    path: '/table/:id',
+    name: 'table',
+    meta: { requiresAuth: true },
+    component: Table
+
   }
 ]

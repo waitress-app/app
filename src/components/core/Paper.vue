@@ -1,11 +1,24 @@
 <script>
 export default {
+  props: {
+    src: {
+      type: [String, Object]
+    }
+  },
+  methods: {
+    link () {
+      if (this.src) this.$router.push(this.src)
+    }
+  },
   render (h) {
     return h(
       'div',
       {
         class: {
           'c-paper': true
+        },
+        on: {
+          click: this.link
         }
       },
       this.$slots.default
