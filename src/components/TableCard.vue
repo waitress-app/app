@@ -10,7 +10,7 @@
         {{ table.number }}
       </div>
       <div class="c-table__action" :class="{'c-table__action--calling': table.calling}">
-        <TableActionSvg :action="table.action" />
+        <component :is="`c-${table.action}`" />
       </div>
       <div class="c-table__arrival caption">
         {{ table.arrival | hours }}
@@ -29,11 +29,21 @@
 
 <script>
 import CPaper from '@/components/core/Paper'
-import TableActionSvg from '@/components/TableActionSvg'
+import CBill from '@/components/svg/Bill'
+import CEating from '@/components/svg/Eating'
+import CMenu from '@/components/svg/Menu'
+import COrderReady from '@/components/svg/OrderReady'
+import CWaiter from '@/components/svg/Waiter'
+import CWaiting from '@/components/svg/Waiting'
 export default {
   components: {
     CPaper,
-    TableActionSvg
+    CBill,
+    CEating,
+    CMenu,
+    COrderReady,
+    CWaiter,
+    CWaiting
   },
   props: {
     table: {
@@ -92,6 +102,8 @@ export default {
     stroke: #8e66f1;
     fill: #9983f3;
     margin 28px
+    >svg
+      height 60px
     &--calling
       fill white
   &__arrival
