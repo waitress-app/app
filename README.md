@@ -5,6 +5,7 @@
 [smashicons](https://www.flaticon.com/authors/smashicons)
 [itim2101](https://www.flaticon.com/authors/itim2101)
 [freepik](https://www.flaticon.com/authors/freepik)
+[those-icons](https://www.flaticon.com/authors/those-icons)
 
 ## Project setup
 ```
