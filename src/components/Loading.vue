@@ -25,6 +25,7 @@ export default {
   left 0
   bottom 0
   right 0
+  z-index 1
   display flex
   background #0000001f
   transition .3s cubic-bezier(.25,.8,.5,1)

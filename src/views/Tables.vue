@@ -112,6 +112,6 @@ export default {
     display flex
     justify-content space-between
     flex-wrap wrap
-    max-width 1184px
+    max-width 1175px
     margin auto
 </style>
