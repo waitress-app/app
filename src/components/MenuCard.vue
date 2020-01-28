@@ -1,6 +1,9 @@
 <template>
   <CPaper class="c-menu-item mb-5" :class="{'c-menu-item--unavaliable': item.unavaliable}">
     <img :src="item.src" class="c-menu-item__img"/>
+    <div class="c-menu-item__price">
+      {{item.value | currency}}
+    </div>
     <div class="c-menu-item__name subtitle pl-3">
       {{ item.text }}
       <div class="c-menu-item__description caption" style="
@@ -22,6 +25,11 @@ export default {
     item: {
       type: Object
     }
+  },
+  filters: {
+    currency (value) {
+      return new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(value)
+    }
   }
 }
 </script>
@@ -31,12 +39,12 @@ export default {
   display flex
   padding 12px 15px
   flex-basis 100%
+  position relative
   @media screen and (min-width: 740px)
     flex-basis 300px
   @media screen and (min-width: 1040px)
     flex-basis 29%
   &--unavaliable
-    position relative
     opacity .4
     &:after
       background #ffffffb3
@@ -62,4 +70,16 @@ export default {
   &__description
     line-height 1
     color #9da4b9
+  &__price
+    font-size 11px
+    line-height 1
+    position absolute
+    top 47px
+    left 15px
+    padding 5.5px
+    border-bottom-right-radius 8px
+    border-bottom-left-radius 8px
+    width 43px
+    background linear-gradient(0deg, black, transparent)
+    color #e8e8e8
 </style>

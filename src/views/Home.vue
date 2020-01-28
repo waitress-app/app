@@ -8,7 +8,7 @@
         <h2 class="title my-0">
           {{ user.name }}
         </h2>
-        <p class="c-link my-0" @click="logOut">
+        <p class="c-link my-0 c-navbar__logoff" @click="logOut">
           sair
         </p>
       </div>
@@ -80,6 +80,8 @@ export default {
     flex-shrink 1
   &__name
     flex 1
+  &__logoff
+    width fit-content
   &__tips
     flex-shrink 1
     text-align right
