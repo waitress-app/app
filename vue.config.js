@@ -1,7 +1,7 @@
 module.exports = {
   pwa: {
     name: 'Waitress',
-    themeColor: '#8d68f1',
+    themeColor: '#9165f2',
     msTileColor: '#FFFFFF',
     iconPaths: {
       favicon32: 'img/icons/favicon-32x32.png',
