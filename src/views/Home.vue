@@ -16,7 +16,7 @@
         <CTips :goal="100" :tips="54.32" />
       </div>
     </div>
-    <CTabs v-model="tab" :items="tabs" class="mb-8"/>
+    <CTabs v-model="tab" :items="tabs" dataValue="route" class="mb-8"/>
     <transition name="fade" mode="out-in">
       <router-view/>
     </transition>
@@ -85,5 +85,4 @@ export default {
   &__tips
     flex-shrink 1
     text-align right
-
 </style>

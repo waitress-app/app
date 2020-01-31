@@ -1,13 +1,13 @@
 <template>
   <div class="c-tabs" :style="{'width': `${items.length * 100}px`}">
     <div class="c-tabs__item"
-      :class="{'c-tabs__item--active': item.route === value}"
-      @click="$emit('input', item.route)"
+      :class="{'c-tabs__item--active': item[dataValue] === value}"
+      @click="$emit('input', item[dataValue])"
       v-for="item in items"
-      :key="item.route">
+      :key="item[dataValue]">
       {{ item.text }}
     </div>
-    <div class="c-tabs__slider" :style="{'transform': `translateX(${items.findIndex(elem => elem.route === value) * 100}px)`}"></div>
+    <div class="c-tabs__slider" :style="{'transform': `translateX(${items.findIndex(elem => elem[dataValue] === value) * 100}px)`}"></div>
   </div>
 </template>
 
@@ -19,6 +19,10 @@ export default {
     },
     items: {
       type: Array
+    },
+    dataValue: {
+      type: String,
+      default: 'id'
     }
   }
 }
