@@ -1,5 +1,5 @@
 <template>
-  <div class="c-details">
+  <div class="c-details" v-if="table !== null">
     <div class="c-details-header">
       <div class="c-details-header__back-button" @click="$router.go(-1)">
         <CBackButton />
@@ -13,36 +13,51 @@
         </div>
       </transition>
     </div>
+    <CAddPerson :code="table.code" v-model="addingPerson" />
+    <div class="c-details-customers">
+      <div class="c-details-customers__avatar" v-for="customer in table.customers" :key="customer.id">
+        <CAvatar :src="customer.avatar ? customer.avatar : `https://ui-avatars.com/api/?size=128&name=${customer.name}&color=fff&background=8d68f1`" size="48"/>
+      </div>
+      <div class="c-details-customers__avatar c-link" @click="addingPerson = true">
+        <CAvatar src="https://ui-avatars.com/api/?size=128&name=%2B&color=8d68f1&background=ffffff" size="48"/>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
 import CBackButton from '@/components/svg/BackButton'
 import CWaiter from '@/components/svg/Waiter'
+import CAvatar from '@/components/core/Avatar'
+import CAddPerson from '@/components/AddPerson'
+import { mapGetters, mapActions } from 'vuex'
+
 export default {
   components: {
     CBackButton,
-    CWaiter
+    CWaiter,
+    CAvatar,
+    CAddPerson
   },
   data () {
     return {
-      table: {
-        id: 'hash-service-id-1',
-        number: '02',
-        people: 1,
-        arrival: '2020-01-26T01:52:17-03:00',
-        calling: true,
-        action: 'waiter'
-      }
+      addingPerson: false,
+      loading: false
     }
   },
   methods: {
+    ...mapActions('table', ['getTable']),
     turnOffCalling () {
       this.table.calling = false
     }
   },
-  mounted () {
-    console.log(this.$route.params.id)
+  computed: {
+    ...mapGetters('table', ['table'])
+  },
+  async mounted () {
+    this.loading = true
+    await this.getTable(this.$route.params.id)
+    this.loading = false
   }
 }
 </script>
@@ -50,6 +65,7 @@ export default {
 <style lang="stylus">
 .c-details
   display flex
+  flex-direction column
   &-header
     display flex
     flex 1
@@ -72,5 +88,13 @@ export default {
       box-shadow -1px 1px 4px 1px rgba(0,0,0,0.22)
       stroke white
       fill white
-
+  &-customers
+    display flex
+    padding 12px
+    margin-top 24px
+    border-radius 50px
+    box-shadow inset 4px 2px 7px 3px #eaeaea85
+    overflow-x auto
+    &__avatar
+      flex-basis 58px
 </style>
