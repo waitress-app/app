@@ -7,11 +7,7 @@
       <div class="c-details-header__number pl-4 title" >
         Mesa #{{ table.number }}
       </div>
-      <transition name="fade">
-        <div class="c-details-header__calling" v-if="table.calling" @click="turnOffCalling">
-          <CWaiter />
-        </div>
-      </transition>
+      <CSwitch class="c-details-header__calling" :value="table.calling" @input="turnOffCalling"/>
     </div>
     <CAddPerson :code="table.code" v-model="addingPerson" />
     <div class="c-details-customers">
@@ -27,7 +23,7 @@
 
 <script>
 import CBackButton from '@/components/svg/BackButton'
-import CWaiter from '@/components/svg/Waiter'
+import CSwitch from '@/components/core/Switch'
 import CAvatar from '@/components/core/Avatar'
 import CAddPerson from '@/components/AddPerson'
 import { mapGetters, mapActions } from 'vuex'
@@ -35,9 +31,9 @@ import { mapGetters, mapActions } from 'vuex'
 export default {
   components: {
     CBackButton,
-    CWaiter,
     CAvatar,
-    CAddPerson
+    CAddPerson,
+    CSwitch
   },
   data () {
     return {
@@ -79,15 +75,7 @@ export default {
       color #8790a9
       flex-grow 1
     &__calling
-      padding 5px 6px 7px 6px
-      width 18px
-      height 18px
       flex-shrink 1
-      border-radius 100%
-      background linear-gradient(135deg, #bc4cf6, #7873ef)
-      box-shadow -1px 1px 4px 1px rgba(0,0,0,0.22)
-      stroke white
-      fill white
   &-customers
     display flex
     padding 12px
