@@ -9,10 +9,12 @@ export default {
     return h('button', {
       class: {
         'c-button': true,
+        'c-link': true,
         'c-button--disabled': this.disabled
       },
       on: {
         click: () => {
+          if (this.disabled) return
           this.$emit('click')
         }
       }

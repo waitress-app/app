@@ -1,6 +1,6 @@
 <template>
   <div class="c-tabs" :style="{'width': `${items.length * 100}px`}">
-    <div class="c-tabs__item"
+    <div class="c-tabs__item c-link"
       :class="{'c-tabs__item--active': item[dataValue] === value}"
       @click="$emit('input', item[dataValue])"
       v-for="item in items"
@@ -43,7 +43,7 @@ export default {
     cursor pointer
     &--active
       color #8b68f1
-      cursor default
+      cursor default!important
   &__slider
     position absolute
     left 0

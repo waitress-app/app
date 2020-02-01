@@ -26,4 +26,8 @@ export default {
 .c-link
   color #13255682
   cursor pointer
+  -webkit-tap-highlight-color transparent
+  user-select none
+  &:focus
+    outline none
 </style>

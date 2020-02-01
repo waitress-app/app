@@ -1,5 +1,5 @@
 <template>
-  <CPaper class="c-table"
+  <CPaper class="c-table c-link"
     :src="{ name: 'table', params: {id: table.id} } "
     :class="{'c-table--empty': !table.people, 'c-table--calling': table.calling, 'c-table--reservation': table.reservation}">
     <template v-if="table.people > 0" @click="table.calling = true">
