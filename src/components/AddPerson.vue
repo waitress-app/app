@@ -92,10 +92,11 @@ export default {
 
 <style lang="stylus">
 .c-add-person
-  display: flex;
-  width: 240px;
+  margin auto
+  display flex
+  width 240px
   padding 15px
-  flex-direction: column;
+  flex-direction column
   &__label
     flex 1
     color #8790a9
@@ -105,7 +106,7 @@ export default {
     padding-top 44px
     color #cccccc
     font-size 32px
-    letter-spacing: 14px
+    letter-spacing 14px
     font-weight bold
     text-align center
   &__hr
