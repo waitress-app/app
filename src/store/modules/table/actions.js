@@ -11,12 +11,13 @@ export default {
         customers: [
           {
             id: 'hash-customer-id-1',
-            name: 'Renato vicente',
+            name: 'Renato Vicente',
             avatar: 'https://randomuser.me/api/portraits/men/11.jpg'
           },
           {
             id: 'hash-customer-id-2',
-            name: 'Diogo Nakaruma'
+            name: 'Diogo Nakaruma',
+            avatar: 'https://ui-avatars.com/api/?size=128&name=Diogo%20Nakaruma&color=fff&background=8d68f1'
           }
         ],
         arrival: '2020-01-26T01:52:17-03:00',
@@ -34,6 +35,7 @@ export default {
     commit('push_person', {
       id: `hash-customer-id-${Math.floor(Math.random() * 10)}`,
       name: payload.name,
+      avatar: `https://ui-avatars.com/api/?size=128&name=${payload.name}&color=fff&background=8d68f1`,
       arrival: new Date().toISOString()
     })
   }

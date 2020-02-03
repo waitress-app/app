@@ -35,6 +35,7 @@ export default {
     padding 10px
     background white
     border-radius 8px
+    position relative
     @media screen and (max-width: 740px)
       border-bottom-right-radius 0
       border-bottom-left-radius 0

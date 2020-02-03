@@ -1,7 +1,7 @@
 <template>
   <div class="c-details" v-if="table !== null">
     <div class="c-details-header">
-      <div class="c-details-header__back-button" @click="$router.go(-1)">
+      <div class="c-details-header__back-button c-link" @click="$router.go(-1)">
         <CBackButton />
       </div>
       <div class="c-details-header__number pl-4 title" >
@@ -9,12 +9,13 @@
       </div>
       <CSwitch class="c-details-header__calling" :value="table.calling" @input="turnOffCalling"/>
     </div>
-    <CAddPerson :code="table.code" v-model="addingPerson" />
+    <CAddCustomer :code="table.code" v-model="addingCustomer" />
+    <CCustomerOptions v-model="selectedCustomer" />
     <div class="c-details-customers">
-      <div class="c-details-customers__avatar" v-for="customer in table.customers" :key="customer.id">
-        <CAvatar :src="customer.avatar ? customer.avatar : `https://ui-avatars.com/api/?size=128&name=${customer.name}&color=fff&background=8d68f1`" size="48"/>
+      <div class="c-details-customers__avatar c-link" v-for="customer in table.customers" :key="customer.id">
+        <CAvatar :src="customer.avatar" size="48" class="c-link" @click="selectedCustomer = customer"/>
       </div>
-      <div class="c-details-customers__avatar c-link" @click="addingPerson = true">
+      <div class="c-details-customers__avatar c-link" @click="addingCustomer = true">
         <CAvatar src="https://ui-avatars.com/api/?size=128&name=%2B&color=8d68f1&background=ffffff" size="48"/>
       </div>
     </div>
@@ -25,19 +26,22 @@
 import CBackButton from '@/components/svg/BackButton'
 import CSwitch from '@/components/core/Switch'
 import CAvatar from '@/components/core/Avatar'
-import CAddPerson from '@/components/AddPerson'
+import CAddCustomer from '@/components/AddCustomer'
+import CCustomerOptions from '@/components/CustomerOptions'
 import { mapGetters, mapActions } from 'vuex'
 
 export default {
   components: {
     CBackButton,
     CAvatar,
-    CAddPerson,
-    CSwitch
+    CAddCustomer,
+    CSwitch,
+    CCustomerOptions
   },
   data () {
     return {
-      addingPerson: false,
+      selectedCustomer: {},
+      addingCustomer: false,
       loading: false
     }
   },
