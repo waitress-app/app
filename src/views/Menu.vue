@@ -11,33 +11,13 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex'
 import CButton from '@/components/core/Button'
-import CMenuCard from '@/components/MenuCard'
+import loadMenu from '@/components/mixins/loadMenu'
 export default {
   components: {
-    CButton,
-    CMenuCard
+    CButton
   },
-  data () {
-    return {
-      loading: false
-    }
-  },
-  methods: {
-    ...mapActions('menu', ['getMenu']),
-    async loadMenu () {
-      this.loading = true
-      await this.getMenu()
-      this.loading = false
-    }
-  },
-  computed: {
-    ...mapGetters('menu', ['menu'])
-  },
-  mounted () {
-    this.loadMenu()
-  }
+  mixins: [loadMenu]
 }
 </script>
 

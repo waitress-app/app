@@ -7,10 +7,10 @@
       <div class="c-customer-options__name">
         {{ storedCustomer.name }}
       </div>
-      <div class="c-customer-options__button c-link">
+      <div class="c-customer-options__button c-link" @click="order">
         Fazer pedido
       </div>
-      <div class="c-customer-options__button c-link">
+      <div class="c-customer-options__button c-link" @click="checkOut">
         Finalizar a conta
       </div>
     </div>
@@ -37,6 +37,18 @@ export default {
   data () {
     return {
       storedCustomer: {} // prevent double img requests && animation erros
+    }
+  },
+  methods: {
+    async order () {
+      this.open = false
+      await new Promise(resolve => setTimeout(resolve, 200)) // animation
+      this.$emit('order', this.storedCustomer.id)
+    },
+    async checkOut () {
+      this.open = false
+      await new Promise(resolve => setTimeout(resolve, 200)) // animation
+      this.$emit('checkOut', this.storedCustomer.id)
     }
   },
   watch: {

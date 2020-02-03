@@ -36,6 +36,7 @@ export default {
     background white
     border-radius 8px
     position relative
+    max-height 90%
     @media screen and (max-width: 740px)
       border-bottom-right-radius 0
       border-bottom-left-radius 0
