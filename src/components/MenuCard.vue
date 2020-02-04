@@ -1,5 +1,5 @@
 <template>
-  <CPaper class="c-menu-item mb-5" :class="{'c-menu-item--unavaliable': item.unavaliable}">
+  <CPaper class="c-menu-item mb-5 c-link" :class="{'c-menu-item--unavaliable': item.unavaliable}" @click="$emit('click')">
     <img :src="item.src" class="c-menu-item__img"/>
     <div class="c-menu-item__price">
       {{item.value | currency}}

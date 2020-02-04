@@ -3,7 +3,7 @@
     <CTabs v-model="tab" :items="tabs" class="mb-8"/>
     <transition name="fade" mode="out-in" v-for="type in tabs" :key="type.id">
       <div v-if="tab === type.id" class="c-order-menu__list" :key="type.id">
-        <CMenuCard  class="c-order-menu__item" v-for="(item, index) in menuTypes[type.id]" :key="index" :item="item"/>
+        <CMenuCard  class="c-order-menu__item" v-for="(item, index) in menuTypes[type.id]" :key="index" :item="item" @click="$emit('ordering', index)"/>
       </div>
     </transition>
   </CModal>
@@ -41,6 +41,11 @@ export default {
           id: 'dessert'
         }
       ]
+    }
+  },
+  methods: {
+    selectItem (id) {
+      console.log(this.menu[id])
     }
   },
   computed: {

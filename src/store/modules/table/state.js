@@ -1,3 +1,4 @@
 export default {
-  table: null
+  table: null,
+  order: '1'
 }
