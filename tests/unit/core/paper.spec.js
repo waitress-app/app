@@ -11,6 +11,7 @@ describe('Paper.vue', () => {
       }
     })
     expect(wrapper.find('h1').is('h1')).toBe(true)
+    expect(wrapper).toMatchSnapshot()
   })
   it('call router push if src is passed', () => {
     const src = '/page'
