@@ -11,6 +11,7 @@ export default {
     // mocking api wait response
     await new Promise(resolve => setTimeout(resolve, 1000))
     commit('setUser', payload)
+    router.push({ name: 'tables-list' })
   },
   currentSession: async ({ getters }) => {
     if (getters.user !== null) {

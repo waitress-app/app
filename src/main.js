@@ -7,7 +7,7 @@ import './registerServiceWorker'
 
 Vue.config.productionTip = false
 
-new Vue({
+window.app = new Vue({
   router,
   store,
   render: h => h(App)
