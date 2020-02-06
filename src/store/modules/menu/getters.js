@@ -9,7 +9,10 @@ export default {
       if (menuTypes[state.menu[index].type] === undefined) {
         menuTypes[state.menu[index].type] = []
       }
-      menuTypes[state.menu[index].type].push(state.menu[index])
+      menuTypes[state.menu[index].type].push({
+        ...state.menu[index],
+        id: index
+      })
     }
     return menuTypes
   }

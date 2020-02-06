@@ -6,7 +6,7 @@ export default {
   push_person: (state, payload) => {
     state.table.customers = [...state.table.customers, payload]
   },
-  selectShare: (state, payload) => {
-    console.log(Object.keys(payload))
+  setOrder: (state, payload) => {
+    state.table.orders = [...state.table.orders, payload]
   }
 }

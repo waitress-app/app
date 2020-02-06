@@ -10,18 +10,20 @@
       <CSwitch class="c-details-header__calling" :value="table.calling" @input="turnOffCalling"/>
     </div>
     <CAddCustomer :code="table.code" v-model="addingCustomer" />
-    <!-- refactor with routes #table/#customer/#item -->
-    <CCustomerOptions v-model="selectedCustomer" @order="order = true"/>
-    <COrderMenu v-model="order" />
-    <COrderDetails :selectedCustomer="selectedCustomer" />
+    <CCustomerOptions />
+    <COrderMenu />
+    <COrderDetails />
     <CShareWith />
     <div class="c-details-customers">
       <div class="c-details-customers__avatar c-link" v-for="customer in table.customers" :key="customer.id">
-        <CAvatar :src="customer.avatar" size="48" class="c-link" @click="selectedCustomer = customer"/>
+        <CAvatar :src="customer.avatar" size="48" class="c-link" @click="$router.push({query: { customer: customer.id}})"/>
       </div>
       <div class="c-details-customers__avatar c-link" @click="addingCustomer = true">
         <CAvatar src="https://ui-avatars.com/api/?size=128&name=%2B&color=8d68f1&background=ffffff" size="48"/>
       </div>
+    </div>
+    <div v-for="order in orders" :key="order.id">
+      {{ order.quantity }}x - {{ order.item.text }} : {{ order.price }}
     </div>
   </div>
 </template>
@@ -63,7 +65,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters('table', ['table'])
+    ...mapGetters('table', ['table', 'orders'])
   },
   async mounted () {
     this.loading = true

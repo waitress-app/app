@@ -1,12 +1,12 @@
 <template>
   <CModal v-model="open">
     <div class="c-ordering">
-    <!-- {{ selectedItem }} -->
+    <!-- {{ item }} -->
       <div class="c-ordering__avatar">
-        <CAvatar :src="selectedItem.src" size="64"/>
+        <CAvatar :src="item.src" size="64"/>
       </div>
       <div class="c-ordering__name">
-        {{ selectedItem.text }}
+        {{ item.text }}
       </div>
       <div class="c-ordering__quantity c-quantity">
         <div class="c-quantity__label">
@@ -37,7 +37,7 @@ import CAvatar from '@/components/core/Avatar'
 import CInput from '@/components/core/Input'
 import CPlus from '@/components/svg/Plus'
 import CMinus from '@/components/svg/Minus'
-import { mapActions, mapMutations, mapGetters } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 export default {
   components: {
     CModal,
@@ -47,37 +47,50 @@ export default {
     CPlus,
     CMinus
   },
-  props: {
-    value: {
-      type: Boolean
-    }
-  },
   data () {
     return {
       notes: '',
       quantity: 1,
-      share: ['']
+      share: []
     }
   },
   methods: {
-    ...mapActions('menu', ['requestOrder']),
-    ...mapMutations('menu', ['setSelectOrder']),
+    ...mapActions('table', ['requestOrder']),
     request () {
-      this.requestOrder()
+      this.requestOrder({
+        notes: this.notes,
+        quantity: this.quantity,
+        share: this.share,
+        item: this.itemId
+      })
+      this.open = false
     },
     cancelOrder () {
-      this.setSelectOrder(null)
+      // this.setSelectOrder(null)
     }
   },
   computed: {
-    ...mapGetters('table', ['selectedItem']),
+    ...mapGetters('menu', ['menu']),
+    itemId () {
+      return this.$route.query.item
+    },
+    item () {
+      return this.open ? this.menu[this.itemId] : {}
+    },
     open: {
       get () {
-        return this.selectedItem !== null
+        return this.itemId !== undefined
       },
       set (value) {
-        this.$emit('input', false)
+        this.$router.go(-1)
       }
+    }
+  },
+  watch: {
+    open () {
+      this.share = this.$route.query.customer ? [this.$route.query.customer] : []
+      this.notes = ''
+      this.quantity = 1
     }
   }
 }

@@ -8,5 +8,14 @@ export default {
   },
   selectedItemId (state) {
     return state.order
+  },
+  orders (state, getters, rootState, rootGetters) {
+    return state.table.orders.map(elem => {
+      return {
+        ...elem,
+        price: rootGetters['menu/menu'][elem.item].value * elem.quantity,
+        item: rootGetters['menu/menu'][elem.item]
+      }
+    })
   }
 }

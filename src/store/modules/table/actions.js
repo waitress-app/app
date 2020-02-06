@@ -13,7 +13,8 @@ export default {
             id: '0',
             quantity: 3,
             share: ['hash-customer-id-1'],
-            notes: ''
+            notes: '',
+            item: '3'
           }
         ],
         customers: [
@@ -53,9 +54,8 @@ export default {
       // const { data: result } = await Vue.prototype.$http.get(`17k4ti`)
       commit('setOrder', {
         ...payload,
-        orderedAt: '2020-02-3T01:52:17-03:00'
+        orderedAt: new Date().toISOString()
       })
-      commit('menu/setSelectOrder', null, { root: true })
       commit('app/toggleLoading', null, { root: true })
     } catch (err) {
       console.log(err)

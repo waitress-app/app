@@ -20,19 +20,12 @@
 <script>
 import CAvatar from '@/components/core/Avatar'
 import CModal from '@/components/core/Modal'
+import { mapGetters } from 'vuex'
 // import { mapActions } from 'vuex'
 export default {
   components: {
     CModal,
     CAvatar
-  },
-  props: {
-    customer: {
-      type: Object
-    }
-  },
-  model: {
-    prop: 'customer'
   },
   data () {
     return {
@@ -41,9 +34,12 @@ export default {
   },
   methods: {
     async order () {
-      this.open = false
-      await new Promise(resolve => setTimeout(resolve, 200)) // animation
-      this.$emit('order', this.storedCustomer.id)
+      this.$router.replace({
+        query: {
+          ...this.$route.query,
+          menu: true
+        }
+      })
     },
     async checkOut () {
       this.open = false
@@ -59,12 +55,21 @@ export default {
     }
   },
   computed: {
+    ...mapGetters('table', ['table']),
+    customerId () {
+      return this.$route.query.customer
+    },
+    customer () {
+      return this.open ? this.table.customers.find(elem => elem.id === this.customerId) : {}
+    },
     open: {
       get () {
-        return this.customer.id !== undefined
+        return this.$route.query.menu ||
+          this.$route.query.item ||
+          this.$route.query.checkout ? false : this.customerId !== undefined
       },
       set (value) {
-        this.$emit('input', {})
+        this.$router.go(-1)
       }
     }
   }

@@ -9,7 +9,7 @@ const store = new Vuex.Store({
   plugins: [
     createPersistedState(
       {
-        paths: ['auth']
+        paths: ['auth', 'menu']
       }
     )
   ],
