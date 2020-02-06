@@ -1,33 +1,39 @@
 <template>
-  <CModal v-model="open">
-    <div class="c-ordering">
-    <!-- {{ item }} -->
-      <div class="c-ordering__avatar">
-        <CAvatar :src="item.src" size="64"/>
-      </div>
-      <div class="c-ordering__name">
-        {{ item.text }}
-      </div>
-      <div class="c-ordering__quantity c-quantity">
-        <div class="c-quantity__label">
-          Quantidade:
+  <div>
+    <CModal v-model="open">
+      <div class="c-ordering">
+      <!-- {{ item }} -->
+        <div class="c-ordering__avatar">
+          <CAvatar :src="item.src" size="64"/>
         </div>
-        <div class="c-quantity__btn" :class="{'c-quantity__btn--disabled': quantity === 1}" @click="quantity > 1 ? quantity-- : null">
-         <CMinus />
+        <div class="c-ordering__name">
+          {{ item.text }}
         </div>
-        <div class="c-quantity__number">
-          {{ quantity }}
+        <div class="c-ordering__quantity c-quantity">
+          <div class="c-quantity__label">
+            Quantidade:
+          </div>
+          <div class="c-quantity__btn" :class="{'c-quantity__btn--disabled': quantity === 1}" @click="quantity > 1 ? quantity-- : null">
+          <CMinus />
+          </div>
+          <div class="c-quantity__number">
+            {{ quantity }}
+          </div>
+          <div class="c-quantity__btn" @click="quantity++">
+            <CPlus />
+          </div>
         </div>
-        <div class="c-quantity__btn" @click="quantity++">
-          <CPlus />
+        <div>
+          <CInput v-model="notes" block placeholder="Observações"/>
         </div>
+        <div class="c-link" @click="shareWith">
+          dividindo com {{ share.length }}
+        </div>
+        <CButton @click="request">Finalizar pedido</CButton>
       </div>
-      <div>
-        <CInput v-model="notes" block placeholder="Observações"/>
-      </div>
-      <CButton @click="request">Finalizar pedido</CButton>
-    </div>
-  </CModal>
+    </CModal>
+    <CShareWith v-model="share"/>
+  </div>
 </template>
 
 <script>
@@ -37,6 +43,7 @@ import CAvatar from '@/components/core/Avatar'
 import CInput from '@/components/core/Input'
 import CPlus from '@/components/svg/Plus'
 import CMinus from '@/components/svg/Minus'
+import CShareWith from '@/components/ShareWith'
 import { mapActions, mapGetters } from 'vuex'
 export default {
   components: {
@@ -45,7 +52,8 @@ export default {
     CButton,
     CInput,
     CPlus,
-    CMinus
+    CMinus,
+    CShareWith
   },
   data () {
     return {
@@ -56,6 +64,14 @@ export default {
   },
   methods: {
     ...mapActions('table', ['requestOrder']),
+    shareWith () {
+      this.$router.push({
+        query: {
+          ...this.$route.query,
+          share: true
+        }
+      })
+    },
     request () {
       this.requestOrder({
         notes: this.notes,

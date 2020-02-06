@@ -35,7 +35,7 @@ export default {
   },
   props: {
     value: {
-      type: Boolean
+      type: Array
     }
   },
   data () {
@@ -45,6 +45,10 @@ export default {
   },
   methods: {
     ...mapMutations('table', ['selectShare']),
+    selectShare () {
+      this.$emit('input', Object.keys(this.share))
+      this.open = false
+    },
     select (id) {
       if (!this.share[id]) {
         this.$set(this.share, id, true)
@@ -57,11 +61,19 @@ export default {
     ...mapGetters('table', ['table']),
     open: {
       get () {
-        return false // this.selectedItem
+        return this.$route.query.share
       },
       set (value) {
-        this.$emit('input', false)
+        this.$router.go(-1)
       }
+    }
+  },
+  watch: {
+    open () {
+      this.share = {}
+      this.value.forEach(elem => {
+        this.$set(this.share, elem, true)
+      })
     }
   }
 }
