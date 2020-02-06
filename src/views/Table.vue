@@ -14,6 +14,7 @@
     <CCustomerOptions v-model="selectedCustomer" @order="order = true"/>
     <COrderMenu v-model="order" />
     <COrderDetails :selectedCustomer="selectedCustomer" />
+    <CShareWith />
     <div class="c-details-customers">
       <div class="c-details-customers__avatar c-link" v-for="customer in table.customers" :key="customer.id">
         <CAvatar :src="customer.avatar" size="48" class="c-link" @click="selectedCustomer = customer"/>
@@ -33,6 +34,7 @@ import CAddCustomer from '@/components/AddCustomer'
 import CCustomerOptions from '@/components/CustomerOptions'
 import COrderMenu from '@/components/OrderMenu'
 import COrderDetails from '@/components/OrderDetails'
+import CShareWith from '@/components/ShareWith'
 import { mapGetters, mapActions } from 'vuex'
 
 export default {
@@ -43,7 +45,8 @@ export default {
     CSwitch,
     CCustomerOptions,
     COrderMenu,
-    COrderDetails
+    COrderDetails,
+    CShareWith
   },
   data () {
     return {
