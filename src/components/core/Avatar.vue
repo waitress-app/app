@@ -29,7 +29,7 @@ export default {
   render (h) {
     const [width, height] = this.getSize(this.size, this.width, this.height)
     if (width !== height) console.warn('Avatar is not round')
-    const border = width > 65 ? 4 : 2
+    const border = width > 65 ? 4 : width > 33 ? 2 : 0
     return h('div', {
       class: {
         'c-avatar': true,

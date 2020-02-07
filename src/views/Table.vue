@@ -1,7 +1,7 @@
 <template>
   <div class="c-details" v-if="table !== null">
     <div class="c-details-header">
-      <div class="c-details-header__back-button c-link" @click="$router.go(-1)">
+      <div class="c-details-header__back-button c-link" @click="$router.push('/')">
         <CBackButton />
       </div>
       <div class="c-details-header__number pl-4 title" >
@@ -21,9 +21,7 @@
         <CAvatar src="https://ui-avatars.com/api/?size=128&name=%2B&color=8d68f1&background=ffffff" size="48"/>
       </div>
     </div>
-    <div v-for="order in orders" :key="order.id">
-      {{ order.quantity }}x - {{ order.item.text }} : {{ order.price }}
-    </div>
+    <COrderList />
   </div>
 </template>
 
@@ -35,6 +33,7 @@ import CAddCustomer from '@/components/AddCustomer'
 import CCustomerOptions from '@/components/CustomerOptions'
 import COrderMenu from '@/components/OrderMenu'
 import COrderDetails from '@/components/OrderDetails'
+import COrderList from '@/components/OrderList'
 import { mapGetters, mapActions } from 'vuex'
 
 export default {
@@ -45,12 +44,11 @@ export default {
     CSwitch,
     CCustomerOptions,
     COrderMenu,
-    COrderDetails
+    COrderDetails,
+    COrderList
   },
   data () {
     return {
-      order: false,
-      selectedCustomer: {},
       addingCustomer: false,
       loading: false
     }
@@ -62,7 +60,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters('table', ['table', 'orders'])
+    ...mapGetters('table', ['table'])
   },
   async mounted () {
     this.loading = true

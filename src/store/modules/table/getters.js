@@ -13,6 +13,7 @@ export default {
     return state.table.orders.map(elem => {
       return {
         ...elem,
+        customers: elem.share.map(elem => state.table.customers.find(customer => customer.id === elem)),
         price: rootGetters['menu/menu'][elem.item].value * elem.quantity,
         item: rootGetters['menu/menu'][elem.item]
       }
