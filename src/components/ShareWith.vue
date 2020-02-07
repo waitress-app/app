@@ -87,6 +87,7 @@ export default {
   padding 10px
   flex-basis 80px
   max-width 80px
+  min-width 80px
   flex-shrink 1
   position relative
   &__avatar

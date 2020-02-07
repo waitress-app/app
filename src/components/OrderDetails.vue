@@ -2,7 +2,6 @@
   <div>
     <CModal v-model="open">
       <div class="c-ordering">
-      <!-- {{ item }} -->
         <div class="c-ordering__avatar">
           <CAvatar :src="item.src" size="64"/>
         </div>
@@ -26,8 +25,8 @@
         <div>
           <CInput v-model="notes" block placeholder="Observações"/>
         </div>
-        <div class="c-link" @click="shareWith">
-          dividindo com {{ share.length }}
+        <div class="c-link mb-4 mt-2 py-2 text-center" @click="shareWith">
+          {{ shareLength }}
         </div>
         <CButton @click="request">Finalizar pedido</CButton>
       </div>
@@ -87,6 +86,20 @@ export default {
   },
   computed: {
     ...mapGetters('menu', ['menu']),
+    ...mapGetters('table', ['table']),
+    shareLength () {
+      switch (this.share.length) {
+        case 0:
+          return 'Selecionar cliente'
+        case this.table.customers.length:
+          return 'Dividindo com todos'
+        case 1:
+          const name = this.table.customers.find(elem => elem.id === this.share[0]).name.split(' ')[0]
+          return `${name} gostaria de dividir?`
+        default:
+          return `Dividindo com ${this.share.length}`
+      }
+    },
     itemId () {
       return this.$route.query.item
     },
