@@ -59,7 +59,7 @@ export default {
       await this.addPerson({
         name: this.name
       })
-      this.$emit('input', false)
+      this.open = false
       this.loading = false
     }
   },
@@ -67,7 +67,7 @@ export default {
     ...mapGetters('table', ['table']),
     open: {
       get () {
-        return this.$route.query.newcustomer
+        return this.$route.query.newcustomer !== undefined
       },
       set (value) {
         this.$router.go(-1)
@@ -80,8 +80,8 @@ export default {
     }
   },
   watch: {
-    value (open) {
-      if (!open) {
+    open (value) {
+      if (!value) {
         // wait animations to finish
         setTimeout(() => {
           this.name = ''

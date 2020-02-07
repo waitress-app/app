@@ -42,9 +42,12 @@ export default {
       })
     },
     async checkOut () {
-      this.open = false
-      await new Promise(resolve => setTimeout(resolve, 200)) // animation
-      this.$emit('checkOut', this.storedCustomer.id)
+      this.$router.replace({
+        query: {
+          ...this.$route.query,
+          checkout: true
+        }
+      })
     }
   },
   watch: {

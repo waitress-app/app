@@ -62,7 +62,7 @@ export default {
   addPerson: async ({ commit }, payload) => {
     // await someApi()
     commit('push_person', {
-      id: `hash-customer-id-${Math.floor(Math.random() * 10)}`,
+      id: `hash-customer-id-${Math.floor(Math.random() * 10000)}`,
       name: payload.name,
       avatar: `https://ui-avatars.com/api/?size=128&name=${payload.name}&color=fff&background=8d68f1`,
       arrival: new Date().toISOString()
