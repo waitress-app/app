@@ -6,11 +6,12 @@ export default {
       commit('clear')
     })
   },
-  authentication: async ({ commit }, payload) => {
+  authentication: async ({ commit, dispatch }, payload) => {
     // get some api
     // mocking api wait response
     await new Promise(resolve => setTimeout(resolve, 1000))
     commit('setUser', payload)
+    dispatch('menu/getMenu', payload, { root: true })
     router.push({ name: 'tables-list' })
   },
   currentSession: async ({ getters }) => {
