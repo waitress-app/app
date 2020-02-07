@@ -32,10 +32,15 @@
       </li>
     </ul>
     <div>
-      Sub-total: {{ subTotal | currency }}
+      total da mesa: {{ subTotal | currency }}
     </div>
-    <div class="headline">
+    <div class="headline" v-if="total !== 0">
       Total: {{ total | currency }}
+    </div>
+    <div v-else class="text-center mt-5" @click="$router.push('/')">
+      <CButton>
+        Gerar nota
+      </CButton>
     </div>
   </div>
 </template>
@@ -43,9 +48,11 @@
 <script>
 import { mapGetters } from 'vuex'
 import CAvatar from '@/components/core/Avatar'
+import CButton from '@/components/core/Button'
 
 export default {
   components: {
+    CButton,
     CAvatar
   },
   computed: {

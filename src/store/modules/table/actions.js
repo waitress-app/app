@@ -49,7 +49,7 @@ export default {
             paid: true
           }
         ],
-        arrival: '2020-01-26T01:52:17-03:00',
+        date: '2020-01-26T01:52:17-03:00',
         calling: true,
         action: 'waiter'
       }
@@ -65,7 +65,7 @@ export default {
       id: `hash-customer-id-${Math.floor(Math.random() * 10000)}`,
       name: payload.name,
       avatar: `https://ui-avatars.com/api/?size=128&name=${payload.name}&color=fff&background=8d68f1`,
-      arrival: new Date().toISOString()
+      date: new Date().toISOString()
     })
   },
   requestOrder: async ({ commit }, payload) => {
@@ -74,7 +74,20 @@ export default {
       // const { data: result } = await Vue.prototype.$http.get(`17k4ti`)
       commit('setOrder', {
         ...payload,
-        orderedAt: new Date().toISOString()
+        date: new Date().toISOString()
+      })
+      commit('app/toggleLoading', null, { root: true })
+    } catch (err) {
+      console.log(err)
+    }
+  },
+  checkout: async ({ commit }, payload) => {
+    try {
+      commit('app/toggleLoading', null, { root: true })
+      commit('setPays', {
+        ...payload,
+        total: payload.total * -1,
+        date: new Date().toISOString()
       })
       commit('app/toggleLoading', null, { root: true })
     } catch (err) {

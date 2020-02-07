@@ -15,6 +15,7 @@
     <COrderDetails />
     <CCustomersList />
     <COrderList />
+    <COrderCheckout />
   </div>
 </template>
 
@@ -27,6 +28,7 @@ import COrderMenu from '@/components/OrderMenu'
 import COrderDetails from '@/components/OrderDetails'
 import COrderList from '@/components/OrderList'
 import CCustomersList from '@/components/CustomersList'
+import COrderCheckout from '@/components/OrderCheckout'
 import { mapGetters, mapActions } from 'vuex'
 
 export default {
@@ -38,7 +40,8 @@ export default {
     COrderMenu,
     COrderDetails,
     COrderList,
-    CCustomersList
+    CCustomersList,
+    COrderCheckout
   },
   data () {
     return {
