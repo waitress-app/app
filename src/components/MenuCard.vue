@@ -25,11 +25,6 @@ export default {
     item: {
       type: Object
     }
-  },
-  filters: {
-    currency (value) {
-      return new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(value)
-    }
   }
 }
 </script>

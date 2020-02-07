@@ -1,7 +1,7 @@
 <template>
   <div class="c-tips">
     <div class="c-tips__value title">
-      {{ tipsFormat }}
+      {{ tips | currency }}
     </div>
     <CProgressBar :value="50" />
   </div>
@@ -19,11 +19,6 @@ export default {
     },
     tips: {
       type: Number
-    }
-  },
-  computed: {
-    tipsFormat () {
-      return new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(this.tips)
     }
   }
 }

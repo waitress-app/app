@@ -1,11 +1,11 @@
 <template>
-  <CModal :value="value" @input="$emit('input', false)">
+  <CModal v-model="open">
     <div class="c-add-person">
       <CTabs v-model="tab" :items="tabs"></CTabs>
       <transition name="fade" mode="out-in">
         <div v-if="tab === 'code'" key="code">
           <div class="c-add-person__code">
-            {{ code | formatCode }}
+            {{ table.code | formatCode }}
           </div>
         </div>
         <div v-else key="name">
@@ -28,21 +28,13 @@ import CInput from '@/components/core/Input'
 import CModal from '@/components/core/Modal'
 import CButton from '@/components/core/Button'
 import CTabs from '@/components/core/Tabs'
-import { mapActions } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 export default {
   components: {
     CButton,
     CModal,
     CTabs,
     CInput
-  },
-  props: {
-    value: {
-      type: Boolean
-    },
-    code: {
-      type: String
-    }
   },
   data () {
     return {
@@ -69,6 +61,17 @@ export default {
       })
       this.$emit('input', false)
       this.loading = false
+    }
+  },
+  computed: {
+    ...mapGetters('table', ['table']),
+    open: {
+      get () {
+        return this.$route.query.newcustomer
+      },
+      set (value) {
+        this.$router.go(-1)
+      }
     }
   },
   filters: {

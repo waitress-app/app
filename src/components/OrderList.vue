@@ -13,11 +13,30 @@
             {{ order.notes }}
           </div>
         </div>
-        <div class="c-order-list__price">
-          {{ order.price }}
+        <div class="c-order-list__total">
+          {{ order.total }}
+        </div>
+      </li>
+      <li class="c-order-list__item" v-for="pay in pays" :key="pay.id">
+        <div class="c-order-list__details">
+          <div class="c-order-list__name">
+            {{ pay.customer.name }}
+          </div>
+          <div class="c-order-list__tips">
+            (Gorjeta  {{pay.tips | currency}})
+          </div>
+        </div>
+        <div class="c-order-list__total">
+          {{ pay.total  }}
         </div>
       </li>
     </ul>
+    <div>
+      Sub-total: {{ subTotal | currency }}
+    </div>
+    <div class="headline">
+      Total: {{ total | currency }}
+    </div>
   </div>
 </template>
 
@@ -30,7 +49,13 @@ export default {
     CAvatar
   },
   computed: {
-    ...mapGetters('table', ['orders'])
+    ...mapGetters('table', ['orders', 'pays']),
+    total () {
+      return [...this.pays, ...this.orders].reduce((acc, elem) => elem.total + acc, 0)
+    },
+    subTotal () {
+      return this.orders.reduce((acc, elem) => elem.total + acc, 0)
+    }
   }
 }
 </script>
@@ -42,12 +67,21 @@ export default {
   border-radius 8px
   align-items center
   &__item
+    border-bottom 1px dashed
+    margin-bottom 18px
+    padding-bottom 10px
     display flex
     color #9a9a9a
+    &:last-child
+      border none
+      margin-bottom 0
+      padding-bottom 0
   &__details
     flex-grow 1
-  &__price
+  &__total
     flex-shrink 1
+  &__tips
+    font-size 8px
   &__avatars
     height 16px
     >.c-avatar

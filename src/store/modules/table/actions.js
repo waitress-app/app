@@ -15,6 +15,20 @@ export default {
             share: ['hash-customer-id-1'],
             notes: '',
             item: '3'
+          },
+          {
+            id: '1',
+            quantity: 2,
+            share: ['hash-customer-id-3', 'hash-customer-id-1'],
+            notes: '',
+            item: '4'
+          }
+        ],
+        pays: [
+          {
+            customer: 'hash-customer-id-3',
+            total: -12,
+            tips: 1.2
           }
         ],
         customers: [
@@ -27,6 +41,12 @@ export default {
             id: 'hash-customer-id-2',
             name: 'Diogo Nakaruma',
             avatar: 'https://ui-avatars.com/api/?size=128&name=Diogo%20Nakaruma&color=fff&background=8d68f1'
+          },
+          {
+            id: 'hash-customer-id-3',
+            name: 'Karoline Hatamoto',
+            avatar: 'https://randomuser.me/api/portraits/women/11.jpg',
+            paid: true
           }
         ],
         arrival: '2020-01-26T01:52:17-03:00',

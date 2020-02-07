@@ -9,18 +9,11 @@
       </div>
       <CSwitch class="c-details-header__calling" :value="table.calling" @input="turnOffCalling"/>
     </div>
-    <CAddCustomer :code="table.code" v-model="addingCustomer" />
+    <CAddCustomer />
     <CCustomerOptions />
     <COrderMenu />
     <COrderDetails />
-    <div class="c-details-customers">
-      <div class="c-details-customers__avatar c-link" v-for="customer in table.customers" :key="customer.id">
-        <CAvatar :src="customer.avatar" size="48" class="c-link" @click="$router.push({query: { customer: customer.id}})"/>
-      </div>
-      <div class="c-details-customers__avatar c-link" @click="addingCustomer = true">
-        <CAvatar src="https://ui-avatars.com/api/?size=128&name=%2B&color=8d68f1&background=ffffff" size="48"/>
-      </div>
-    </div>
+    <CCustomersList />
     <COrderList />
   </div>
 </template>
@@ -28,28 +21,27 @@
 <script>
 import CBackButton from '@/components/svg/BackButton'
 import CSwitch from '@/components/core/Switch'
-import CAvatar from '@/components/core/Avatar'
 import CAddCustomer from '@/components/AddCustomer'
 import CCustomerOptions from '@/components/CustomerOptions'
 import COrderMenu from '@/components/OrderMenu'
 import COrderDetails from '@/components/OrderDetails'
 import COrderList from '@/components/OrderList'
+import CCustomersList from '@/components/CustomersList'
 import { mapGetters, mapActions } from 'vuex'
 
 export default {
   components: {
     CBackButton,
-    CAvatar,
     CAddCustomer,
     CSwitch,
     CCustomerOptions,
     COrderMenu,
     COrderDetails,
-    COrderList
+    COrderList,
+    CCustomersList
   },
   data () {
     return {
-      addingCustomer: false,
       loading: false
     }
   },
@@ -88,13 +80,4 @@ export default {
       flex-grow 1
     &__calling
       flex-shrink 1
-  &-customers
-    display flex
-    padding 12px
-    margin-top 24px
-    border-radius 50px
-    box-shadow inset 4px 2px 7px 3px #eaeaea85
-    overflow-x auto
-    &__avatar
-      flex-basis 58px
 </style>

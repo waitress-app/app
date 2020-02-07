@@ -22,7 +22,7 @@ export default {
 <style lang="stylus">
 .c-modal
   overflow hidden
-  position absolute
+  position fixed
   top 0
   left 0
   bottom 0

@@ -1,7 +1,7 @@
 <template>
   <CModal v-model="open" class="text-center">
     <div class="c-customers-wrapper ma-4">
-      <CPaper class="c-customer c-link mr-4 text-center" v-for="customer in table.customers" :key="customer.id" @click="select(customer.id)">
+      <CPaper class="c-customer c-link mr-4 text-center" v-for="customer in activeCustomers" :key="customer.id" @click="select(customer.id)">
         <CAvatar class="c-customer__avatar" :src="customer.avatar" size="48"/>
         <div class="c-customer__name">
           {{ customer.name }}
@@ -24,7 +24,7 @@ import CModal from '@/components/core/Modal'
 import CPaper from '@/components/core/Paper'
 import CEating from '@/components/svg/Eating'
 
-import { mapMutations, mapGetters } from 'vuex'
+import { mapGetters } from 'vuex'
 export default {
   components: {
     CAvatar,
@@ -44,7 +44,6 @@ export default {
     }
   },
   methods: {
-    ...mapMutations('table', ['selectShare']),
     selectShare () {
       this.$emit('input', Object.keys(this.share))
       this.open = false
@@ -58,7 +57,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters('table', ['table']),
+    ...mapGetters('table', ['activeCustomers']),
     open: {
       get () {
         return this.$route.query.share

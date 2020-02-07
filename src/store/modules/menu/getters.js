@@ -5,7 +5,6 @@ export default {
   menuTypes (state) {
     let menuTypes = {}
     for (const index in state.menu) {
-      console.log('oi')
       if (menuTypes[state.menu[index].type] === undefined) {
         menuTypes[state.menu[index].type] = []
       }

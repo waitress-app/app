@@ -14,9 +14,20 @@ export default {
       return {
         ...elem,
         customers: elem.share.map(elem => state.table.customers.find(customer => customer.id === elem)),
-        price: rootGetters['menu/menu'][elem.item].value * elem.quantity,
+        total: rootGetters['menu/menu'][elem.item].value * elem.quantity,
         item: rootGetters['menu/menu'][elem.item]
       }
     })
+  },
+  pays (state, getters, rootState, rootGetters) {
+    return state.table.pays.map(elem => {
+      return {
+        ...elem,
+        customer: state.table.customers.find(customer => customer.id === elem.customer)
+      }
+    })
+  },
+  activeCustomers (state) {
+    return state.table.customers.filter(elem => elem.paid === undefined)
   }
 }

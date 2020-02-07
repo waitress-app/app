@@ -7,6 +7,10 @@ import './registerServiceWorker'
 
 Vue.config.productionTip = false
 
+Vue.filter('currency', function (value) {
+  return new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(value)
+})
+
 window.app = new Vue({
   router,
   store,

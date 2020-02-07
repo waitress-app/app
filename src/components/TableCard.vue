@@ -51,9 +51,6 @@ export default {
     }
   },
   filters: {
-    currency (value) {
-      return new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(value)
-    },
     hours (value) {
       const date = new Date(value)
       return `${date.getHours()}:${date.getMinutes()}`
