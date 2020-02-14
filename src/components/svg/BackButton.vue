@@ -10,8 +10,8 @@
       </g>
     </g>
     <linearGradient id="MyGradient">
-      <stop offset="50%" stop-color="#bc4cf6" />
-      <stop offset="100%" stop-color="#7873ef" />
+      <stop offset="50%" stop-color="var(--color-primary)" />
+      <stop offset="100%" stop-color="var(--color-secundary)" />
     </linearGradient>
   </svg>
 </template>

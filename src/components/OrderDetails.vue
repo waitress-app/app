@@ -157,7 +157,7 @@ export default {
     >svg
       width 8px
       fill white
-      background: linear-gradient(135deg, #bc4cf6, #7873ef);
+      background: linear-gradient(135deg, var(--color-primary), var(--color-secundary));
       padding: 8px
       margin-top 1px
       border-radius: 100%

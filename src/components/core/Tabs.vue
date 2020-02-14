@@ -42,7 +42,7 @@ export default {
     transition color .3s cubic-bezier(.25,.8,.5,1)
     cursor pointer
     &--active
-      color #8b68f1
+      color var(--color-primary)
       cursor default!important
   &__slider
     position absolute
@@ -50,7 +50,7 @@ export default {
     bottom 0
     width 100px
     height 4px
-    background linear-gradient(135deg, #bc4cf6, #7873ef)
+    background linear-gradient(135deg, var(--color-primary), var(--color-secundary))
     border-radius 2px
     transition .3s cubic-bezier(.25,.8,.5,1)
 </style>

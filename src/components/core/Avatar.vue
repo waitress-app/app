@@ -67,7 +67,7 @@ export default {
 <style lang="stylus">
 .c-avatar
   border-radius 100%
-  background linear-gradient(135deg, #bc4cf6, #7873ef)
+  background linear-gradient(135deg, var(--color-primary), var(--color-secundary))
   &__img
     border-radius 100%
 </style>

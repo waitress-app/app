@@ -60,7 +60,7 @@ export default {
     height 54px
     box-shadow -4px 2px 4px 1px rgba(113, 113, 113, 0.15)
   &__name
-    color #8b68f1
+    color var(--color-primary)
     flex-grow 1
   &__description
     line-height 1

@@ -28,6 +28,6 @@ export default {
     &__progress
       height 10px
       border-radius 8px
-      background linear-gradient(135deg, #bc4cf6, #7873ef)
+      background linear-gradient(135deg, var(--color-primary), var(--color-secundary))
       transition: 0.3s cubic-bezier(0.25, 0.8, 0.5, 1)
 </style>

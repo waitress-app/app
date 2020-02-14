@@ -30,7 +30,7 @@ export default {
   border-radius 8px
   color white
   box-shadow -1px 1px 4px 1px #00000038
-  background linear-gradient(135deg,#bc4cf6,#7873ef)
+  background linear-gradient(135deg,var(--color-primary),var(--color-secundary))
   transition all .3s ease-in-out
   opacity 1
   outline none

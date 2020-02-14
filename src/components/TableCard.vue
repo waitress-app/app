@@ -83,7 +83,7 @@ export default {
   &--reservation
     background #f8f8f8
   &--calling
-    background linear-gradient(135deg,#bc4cf6,#7873ef)
+    background linear-gradient(135deg,var(--color-primary),var(--color-secundary))
     color white
   &__people
     flex-basis 50%
@@ -96,8 +96,8 @@ export default {
     flex: 1
     flex-basis 100%
     text-align center
-    stroke: #8e66f1;
-    fill: #9983f3;
+    stroke: var(--color-primary);
+    fill: var(--color-primary);
     margin 28px
     >svg
       height 60px

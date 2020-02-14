@@ -97,12 +97,12 @@ export default {
     left 0
     right 0
     bottom 0
-    background linear-gradient(135deg, #bc4cf650, #7873ef50)
+    background linear-gradient(135deg, var(--color-primary-rgba), var(--color-secundary-rgba))
     border-radius 8px
     z-index 1
     >svg
-      stroke #8e66f1
-      fill #9983f3
+      stroke var(--color-primary)
+      fill var(--color-primary)
       width 22px
       position absolute
       right 5px
