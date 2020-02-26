@@ -81,9 +81,9 @@ export default {
       flex 1
       color #e5e5e5
   &--reservation
-    background #f8f8f8
+    background #f8f8f8!important
   &--calling
-    background linear-gradient(135deg,var(--color-primary),var(--color-secundary))
+    background linear-gradient(135deg,var(--color-primary),var(--color-secundary))!important
     color white
   &__people
     flex-basis 50%
@@ -110,4 +110,8 @@ export default {
     flex 1
     flex-basis 50%
     text-align right
+[data-theme="dark"]
+  .c-table
+    &--reservation
+      background #3a3a3a!important
 </style>

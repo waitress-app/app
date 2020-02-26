@@ -48,10 +48,10 @@ export default {
       height 18px
       position absolute
       left 50%
-      margin-left -98px
+      margin-left -88px
       top 54px
       color red
-      padding 4px 75px 0px 75px
+      padding 4px 65px 0px 65px
   &__img
     flex-shrink 1
     border-radius 8px
@@ -77,4 +77,10 @@ export default {
     width 43px
     background linear-gradient(0deg, black, transparent)
     color #e8e8e8
+[data-theme="dark"]
+  .c-menu-item
+    &--unavaliable
+      opacity .4
+      &:after
+        background #282828b3
 </style>

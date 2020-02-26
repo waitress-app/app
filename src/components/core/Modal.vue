@@ -56,4 +56,10 @@ export default {
     right 0
     z-index -1
     background #04040429
+[data-theme="dark"]
+  .c-modal
+    &__paper
+      background #2d2d2d
+    &__backdrop
+      background #35343480
 </style>

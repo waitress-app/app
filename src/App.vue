@@ -30,4 +30,12 @@ export default {
   user-select none
   &:focus
     outline none
+[data-theme="dark"]
+  .c-link
+    color #e1e1e1
+  body
+    background #292929
+  #app
+    color #ffffffb3
+
 </style>

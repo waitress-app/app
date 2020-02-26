@@ -68,6 +68,7 @@ export default {
 </script>
 
 <style lang="stylus">
+
 .c-order-list
   padding 20px
   background #e8e8e8
@@ -101,4 +102,9 @@ export default {
         margin-left 24px
       &:nth-child(5)
         margin-left 32px
+[data-theme="dark"]
+  .c-order-list
+    background #272727
+    border 1px solid #353535
+    box-shadow -3px 2px 4px 1px rgba(14,14,14,0.22)
 </style>

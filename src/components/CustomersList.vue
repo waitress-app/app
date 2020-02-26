@@ -4,7 +4,7 @@
       <CAvatar :src="customer.avatar" size="48" class="c-link" @click="$router.push({query: { customer: customer.id}})"/>
     </div>
     <div class="c-customers__avatar c-link" @click="$router.push({query: { newcustomer: true }})">
-      <CAvatar src="https://ui-avatars.com/api/?size=128&name=%2B&color=8d68f1&background=ffffff" size="48"/>
+      <CAvatar :src="`https://ui-avatars.com/api/?size=128&name=%2B&color=${color}&background=${background}`" size="48"/>
     </div>
   </div>
 </template>
@@ -18,7 +18,13 @@ export default {
     CAvatar
   },
   computed: {
-    ...mapGetters('table', ['activeCustomers'])
+    ...mapGetters('table', ['activeCustomers']),
+    background () {
+      return document.documentElement.getAttribute('data-theme') === 'dark' ? '272727' : 'f3f3f3'
+    },
+    color () {
+      return document.documentElement.getAttribute('data-theme') === 'dark' ? 'f3f3f3' : getComputedStyle(document.documentElement).getPropertyValue('--color-primary')
+    }
   }
 }
 </script>
@@ -33,4 +39,7 @@ export default {
   overflow-x auto
   &__avatar
     flex-basis 58px
+[data-theme="dark"]
+  .c-customers
+    box-shadow inset 4px 2px 7px 3px #35353585
 </style>
