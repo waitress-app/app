@@ -7,30 +7,66 @@
       <div class="c-customer-options__name">
         {{ storedCustomer.name }}
       </div>
-      <div class="c-customer-options__button c-link">
-        {{ bill | currency }}
+      <div class="c-customer-options__bill c-link">
+        {{ bill * avaliableTips[tip].calc | currency }}
+      </div>
+      <div>
+        <CButtonGroup :buttons="avaliableTips" v-model="tip" />
+      </div>
+      <div class="c-customer-options__button c-link mt-3" @click="billingPayment">
+        Finalizar
+      </div>
+      <!-- <div class="c-customer-options__button c-link" @click="billingPayment">
+        Dinheiro
       </div>
       <div class="c-customer-options__button c-link" @click="billingPayment">
-        Finalizar a conta
+        QR code
       </div>
+      <div class="c-customer-options__button c-link" @click="billingPayment">
+        Maquininha
+      </div> -->
     </div>
   </CModal>
 </template>
 
 <script>
 import CAvatar from '@/components/core/Avatar'
+import CButtonGroup from '@/components/core/ButtonGroup'
 import CModal from '@/components/core/Modal'
 import { mapGetters, mapActions } from 'vuex'
 // import { mapActions } from 'vuex'
 export default {
   components: {
     CModal,
-    CAvatar
+    CAvatar,
+    CButtonGroup
   },
   data () {
     return {
       storedCustomer: {}, // prevent double img requests && animation erros
-      tips: true
+      tip: '0',
+      avaliableTips: {
+        '0': {
+          text: 'Sem',
+          calc: 1
+        },
+        '1': {
+          text: '10%',
+          calc: 1.1
+        },
+        '2': {
+          text: '11%',
+          calc: 1.11
+        },
+        '3': {
+          text: '12%',
+          calc: 1.12
+        },
+        '4': {
+          text: '13%',
+          calc: 1.13
+        }
+      }
     }
   },
   methods: {
@@ -39,7 +75,7 @@ export default {
       await this.checkout({
         customer: this.customerId,
         total: this.bill,
-        tips: this.tips
+        tips: (this.bill * this.avaliableTips[this.tip].calc) - this.bill
       })
       this.open = false
     }
@@ -98,6 +134,11 @@ export default {
     margin-bottom 8px
     font-size 24px
     text-align center
+  &__bill
+    padding 15px
+    text-align center
+    color #8790a9
+    font-size 30px
   &__button
     padding 15px
     text-align center

@@ -82,6 +82,7 @@ export default {
     }
   },
   checkout: async ({ commit }, payload) => {
+    console.log(payload)
     try {
       commit('app/toggleLoading', null, { root: true })
       commit('setPays', {
