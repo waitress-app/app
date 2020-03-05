@@ -3,7 +3,7 @@
     <CPaper class="c-login mt-12 mx-auto">
       <div class="c-frame my-6">
         <transition name="slide-fade">
-          <img class="c-frame__logo" v-if="!user" alt="Vue logo" src="../assets/logo.png">
+          <img class="c-frame__logo" v-if="!user" alt="Waitress logo" src="../assets/logo.png">
         </transition>
         <transition name="slide-fade-reverse">
           <CAvatar class="c-frame__picture" v-if="user" :src="user.picture" alt="User avatar" />
