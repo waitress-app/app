@@ -20,7 +20,7 @@
               Finalizar
             </div>
           </div>
-          <div class="text-center" key="list">
+          <div v-else class="text-center" key="list">
             <div class="caption  mt-4 mb-2">
               Pagar com
             </div>
@@ -107,6 +107,8 @@ export default {
     customer (value) {
       if (value.id) {
         this.storedCustomer = value
+        this.qrcode = false
+        this.showqr = false
       }
     }
   },
