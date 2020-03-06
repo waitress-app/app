@@ -10,21 +10,34 @@
       <div class="c-customer-options__bill c-link">
         {{ bill * avaliableTips[tip].calc | currency }}
       </div>
-      <div>
+      <div v-if="bill !== 0 && !qrcode">
         <CButtonGroup :buttons="avaliableTips" v-model="tip" />
       </div>
-      <div class="c-customer-options__button c-link mt-3" @click="billingPayment">
-        Finalizar
+      <div v-if="bill === 0">
+        <div class="c-customer-options__button c-link mt-3" @click="billingPayment">
+          Finalizar
+        </div>
       </div>
-      <!-- <div class="c-customer-options__button c-link" @click="billingPayment">
-        Dinheiro
+      <div v-else-if="!qrcode" class="text-center">
+        <div class="caption  mt-4 mb-2">
+          Pagar com
+        </div>
+        <div class="c-customer-options__button c-link" @click="billingPayment">
+          Dinheiro
+        </div>
+        <div class="c-customer-options__button c-link" @click="qrcode = true">
+          QR code
+        </div>
+        <div class="c-customer-options__button c-link" @click="billingPayment">
+          Maquininha
+        </div>
       </div>
-      <div class="c-customer-options__button c-link" @click="billingPayment">
-        QR code
+      <div v-else>
+        <CQRcodeList @select="showqr = true" v-if="!showqr"/>
+        <div v-else style="text-align:center">
+          <img src="../assets/picpay-qr.png" alt="" style="margin:auto">
+        </div>
       </div>
-      <div class="c-customer-options__button c-link" @click="billingPayment">
-        Maquininha
-      </div> -->
     </div>
   </CModal>
 </template>
@@ -33,17 +46,21 @@
 import CAvatar from '@/components/core/Avatar'
 import CButtonGroup from '@/components/core/ButtonGroup'
 import CModal from '@/components/core/Modal'
+import CQRcodeList from '@/components/QRcodeList'
 import { mapGetters, mapActions } from 'vuex'
 // import { mapActions } from 'vuex'
 export default {
   components: {
     CModal,
     CAvatar,
-    CButtonGroup
+    CButtonGroup,
+    CQRcodeList
   },
   data () {
     return {
       storedCustomer: {}, // prevent double img requests && animation erros
+      qrcode: false,
+      showqr: false,
       tip: '0',
       avaliableTips: {
         '0': {
@@ -85,6 +102,11 @@ export default {
       if (value.id) {
         this.storedCustomer = value
       }
+    },
+    showqr (value) {
+      setTimeout(() => {
+        this.billingPayment()
+      }, 3000)
     }
   },
   computed: {
