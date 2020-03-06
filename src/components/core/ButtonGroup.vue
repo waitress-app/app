@@ -26,19 +26,19 @@ export default {
     flex-grow 1
     padding 8px 0
     text-align center
-    border 1px solid var(--color-primary)
-    color var(--color-primary)
+    border 1px solid var(--color-secundary)
+    color var(--color-secundary)
     border-left none
     transition all .3s
     cursor pointer
     &:first-child
       border-top-left-radius 8px
       border-bottom-left-radius 8px
-      border 1px solid var(--color-primary)
+      border 1px solid var(--color-secundary)
     &:last-child
       border-top-right-radius 8px
       border-bottom-right-radius 8px
     &--active
-      background var(--color-primary)
+      background var(--color-secundary)
       color white
 </style>
