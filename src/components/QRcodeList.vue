@@ -1,9 +1,15 @@
 <template>
   <div class="c-gallery">
-    <div class="c-gallery__scroller">
+    <div class="c-gallery__scroller" ref="scrollWrapper">
       <div class="c-gallery__item" v-for="option in options" :key="option.id">
-        <img :src="require(`../assets/${option.logo}`)" alt="" class="c-gallery__logo" @click="$emit('select', option.id)">
+        <img :src="require(`../assets/${option.logo}`)" alt="" class="c-gallery__logo">
       </div>
+    </div>
+    <div class="c-customer-options__button c-link mt-5" @click="select">
+      Selecionar
+    </div>
+    <div class="c-customer-options__button c-link" @click="$emit('cancel')">
+      Cancelar
     </div>
   </div>
 </template>
@@ -17,11 +23,6 @@ export default {
           id: 'picpay',
           logo: 'picpay-logo.png',
           name: 'PicPay'
-        },
-        {
-          id: 'ame',
-          logo: 'ame-logo.png',
-          name: 'Ame'
         },
         {
           id: 'ifood',
@@ -39,6 +40,12 @@ export default {
           name: 'Rappi'
         }
       ]
+    }
+  },
+  methods: {
+    select () {
+      const selectedOption = Math.round(this.$refs.scrollWrapper.scrollLeft / 195)
+      this.$emit('select', this.options[selectedOption].id)
     }
   }
 }

@@ -10,34 +10,40 @@
       <div class="c-customer-options__bill c-link">
         {{ bill * avaliableTips[tip].calc | currency }}
       </div>
-      <div v-if="bill !== 0 && !qrcode">
-        <CButtonGroup :buttons="avaliableTips" v-model="tip" />
-      </div>
-      <div v-if="bill === 0">
-        <div class="c-customer-options__button c-link mt-3" @click="billingPayment">
-          Finalizar
+      <transition name="slide-fade" mode="out-in">
+        <div v-if="!qrcode">
+          <div v-if="bill !== 0 && !qrcode">
+            <CButtonGroup :buttons="avaliableTips" v-model="tip" />
+          </div>
+          <div v-if="bill === 0">
+            <div class="c-customer-options__button c-link mt-3" @click="billingPayment">
+              Finalizar
+            </div>
+          </div>
+          <div class="text-center" key="list">
+            <div class="caption  mt-4 mb-2">
+              Pagar com
+            </div>
+            <div class="c-customer-options__button c-link" @click="billingPayment">
+              Dinheiro
+            </div>
+            <div class="c-customer-options__button c-link" @click="qrcode = true">
+              QR code
+            </div>
+            <div class="c-customer-options__button c-link" @click="billingPayment">
+              Maquininha
+            </div>
+          </div>
         </div>
-      </div>
-      <div v-else-if="!qrcode" class="text-center">
-        <div class="caption  mt-4 mb-2">
-          Pagar com
+        <div v-else-if="!showqr" key="qrcode-list">
+          <CQRcodeList @select="showqr = true" @cancel="qrcode = false" v-if="!showqr" style="height:200px;padding-top:42px"/>
         </div>
-        <div class="c-customer-options__button c-link" @click="billingPayment">
-          Dinheiro
+        <div v-else key="qrcode">
+          <div style="text-align:center;padding-top:42px;padding-bottom:36px">
+            <img src="../assets/picpay-qr.png" alt="" style="margin:auto" @click="billingPayment">
+          </div>
         </div>
-        <div class="c-customer-options__button c-link" @click="qrcode = true">
-          QR code
-        </div>
-        <div class="c-customer-options__button c-link" @click="billingPayment">
-          Maquininha
-        </div>
-      </div>
-      <div v-else>
-        <CQRcodeList @select="showqr = true" v-if="!showqr"/>
-        <div v-else style="text-align:center">
-          <img src="../assets/picpay-qr.png" alt="" style="margin:auto">
-        </div>
-      </div>
+      </transition>
     </div>
   </CModal>
 </template>
@@ -102,11 +108,6 @@ export default {
       if (value.id) {
         this.storedCustomer = value
       }
-    },
-    showqr (value) {
-      setTimeout(() => {
-        this.billingPayment()
-      }, 3000)
     }
   },
   computed: {
