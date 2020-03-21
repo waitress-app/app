@@ -70,7 +70,12 @@ export default {
           name: `${user.name.first}`
         }
       } else {
-        alert('HTTP-Error: ' + response.status)
+        console.warn('Randomuser API not working :/ \n Error ' + response.status)
+        this.user = {
+          id: '5151c943-a23e-4a91-89b1-7b2e8feb30cd',
+          picture: 'https://randomuser.me/api/portraits/men/90.jpg',
+          name: 'Freddie'
+        }
       }
       this.loadingPicture = false
     }
