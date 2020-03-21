@@ -1,3 +1,6 @@
+import main from '@/assets/css/main.styl'
+import common from '@/assets/css/common.css'
+
 const css = `
 :root {
   --color-primary: ${process.env.VUE_APP_PRIMARY_COLOR_LIGHT};
@@ -11,7 +14,7 @@ const css = `
   --color-secundary: ${process.env.VUE_APP_SECUNDARY_COLOR_DARK};
   --color-secundary-rgba: ${process.env.VUE_APP_SECUNDARY_COLOR_DARK}50;
 }
-`
+` + main + common
 const head = document.head || document.getElementsByTagName('head')[0]
 const style = document.createElement('style')
 
@@ -25,18 +28,16 @@ if (style.styleSheet) {
   style.appendChild(document.createTextNode(css))
 }
 
-const darkMode = window.matchMedia('(prefers-color-scheme: dark)').matches || false
-// const favicon = document.getElementById('favicon');
-// const manifest = document.getElementById('manifest');
-function switchIcon (darkMode) {
-  if (darkMode) {
-    document.documentElement.setAttribute('data-theme', 'dark')
-    // favicon.href = '%PUBLIC_URL%/favicon-dark.ico';
-    // manifest.href='%PUBLIC_URL%/manifest-dark.json'
-  } else {
-    // favicon.href = '%PUBLIC_URL%/favicon-light.ico';
-    // manifest.href='%PUBLIC_URL%/manifest-light.json'
-  }
+const switchTheme = (darkMode) => document.documentElement.setAttribute('data-theme', darkMode ? 'dark' : 'light')
+const toogleTheme = () => {
+  const theme = document.documentElement.getAttribute('data-theme')
+  switchTheme(theme !== 'dark')
 }
-window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => switchIcon(e.matches))
-switchIcon(darkMode)
+window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => switchTheme(e.matches))
+
+const darkMode = window.matchMedia('(prefers-color-scheme: dark)').matches || false
+switchTheme(darkMode)
+export {
+  switchTheme,
+  toogleTheme
+}

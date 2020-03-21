@@ -1,5 +1,6 @@
 <template>
-  <div id="app" class="c-app">
+  <div id="app" class="import '../src/plugins/theme';
+">
     <Loading />
     <transition name="fade" mode="out-in">
       <router-view/>
@@ -17,25 +18,5 @@ export default {
 </script>
 
 <style lang="stylus">
-#app
-  font-family 'Avenir', Helvetica, Arial, sans-serif
-  -webkit-font-smoothing antialiased
-  -moz-osx-font-smoothing grayscale
-  color #2c3e50
-
-.c-link
-  color #13255682
-  cursor pointer
-  -webkit-tap-highlight-color transparent
-  user-select none
-  &:focus
-    outline none
-[data-theme="dark"]
-  .c-link
-    color #e1e1e1
-  body
-    background #292929
-  #app
-    color #ffffffb3
 
 </style>
