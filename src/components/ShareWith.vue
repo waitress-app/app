@@ -60,7 +60,7 @@ export default {
     ...mapGetters('table', ['activeCustomers']),
     open: {
       get () {
-        return this.$route.query.share
+        return this.$route.query.share === 'open'
       },
       set (value) {
         this.$router.go(-1)
@@ -74,6 +74,12 @@ export default {
         this.$set(this.share, elem, true)
       })
     }
+  },
+  mounted () {
+    this.share = {}
+    this.value.forEach(elem => {
+      this.$set(this.share, elem, true)
+    })
   }
 }
 </script>
@@ -89,6 +95,8 @@ export default {
   min-width 80px
   flex-shrink 1
   position relative
+  &:last-child
+    margin-right 0!important
   &__avatar
     margin 0px auto 8px auto
   &__selected

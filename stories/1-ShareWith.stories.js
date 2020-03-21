@@ -20,7 +20,7 @@ export default {
   component: CShareWith
 }
 
-export const ReadingMenu = () => ({
+export const AllCustomersSelected = () => ({
   router,
   store,
   components: { Wrapper, CShareWith },
@@ -29,10 +29,50 @@ export const ReadingMenu = () => ({
   </Wrapper>`,
   data () {
     return {
-      customers: ['hash-customer-id-1']
+      customers: ['hash-customer-id-1', 'hash-customer-id-2']
     }
   },
   mounted () {
-    this.$router.push({ query: { share: true } })
+    if (this.$route.query.share !== 'open') {
+      this.$router.replace({ query: { share: 'open' } })
+    }
+  }
+})
+
+export const SomeCustomersSelected = () => ({
+  router,
+  store,
+  components: { Wrapper, CShareWith },
+  template: `<Wrapper width="320">
+    <CShareWith v-model="customers"></CShareWith>
+  </Wrapper>`,
+  data () {
+    return {
+      customers: ['hash-customer-id-2']
+    }
+  },
+  mounted () {
+    if (this.$route.query.share !== 'open') {
+      this.$router.replace({ query: { share: 'open' } })
+    }
+  }
+})
+
+export const NoCustomersSelected = () => ({
+  router,
+  store,
+  components: { Wrapper, CShareWith },
+  template: `<Wrapper width="320">
+    <CShareWith v-model="customers"></CShareWith>
+  </Wrapper>`,
+  data () {
+    return {
+      customers: []
+    }
+  },
+  mounted () {
+    if (this.$route.query.share !== 'open') {
+      this.$router.replace({ query: { share: 'open' } })
+    }
   }
 })

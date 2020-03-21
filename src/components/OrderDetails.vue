@@ -67,7 +67,7 @@ export default {
       this.$router.push({
         query: {
           ...this.$route.query,
-          share: true
+          share: 'open'
         }
       })
     },
