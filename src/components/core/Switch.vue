@@ -25,6 +25,7 @@ export default {
   width 34px
   padding 4px 14px
   &__button
+    cursor pointer
     outline none
     height 20px
     width 20px
