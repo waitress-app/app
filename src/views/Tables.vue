@@ -3,7 +3,7 @@
     <CTableCard
       v-for="(table, key) in tables"
       :key="key"
-      @click="oi"
+      @click="openTable"
       :table="table"
     />
   </div>
@@ -17,8 +17,14 @@ export default {
     CTableCard
   },
   methods: {
-    oi () {
-      console.log('sd')
+    openTable (table) {
+      console.warn('fixed value', table)
+      this.$router.push({
+        name: 'table',
+        params: {
+          id: 'hash-service-id-1' // table.id
+        }
+      })
     }
   },
   data () {

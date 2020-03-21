@@ -1,6 +1,6 @@
 <template>
   <CPaper class="c-table c-link"
-    :src="{ name: 'table', params: {id: table.id} } "
+    @click="$emit('click', table)"
     :class="{'c-table--empty': !table.people, 'c-table--calling': table.calling, 'c-table--reservation': table.reservation}">
     <template v-if="table.people > 0" @click="table.calling = true">
       <div class="c-table__people">
@@ -74,7 +74,6 @@ export default {
   &--empty
     display flex
     align-items center
-    box-shadow: none
     border-style dashed
     text-align center
     >p

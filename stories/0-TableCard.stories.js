@@ -8,102 +8,114 @@ export default {
 }
 const table = {
   id: 'hash-service-id-1',
-  number: '01',
+  number: '01'
+}
+const usingTable = {
+  ...table,
   people: 3,
-  arrival: '2020-01-26T01:52:17-03:00',
-  calling: false,
-  action: 'menu'
+  arrival: '2020-01-26T01:52:17-03:00'
+}
+const tableCardMixin = {
+  components: { Wrapper, CTableCard },
+  template: `<Wrapper width="168">
+    <CTableCard :table="table" @click="action"></CTableCard>
+  </Wrapper>`,
+  methods: { action: action('clicked') }
 }
 
 export const ReadingMenu = () => ({
-  components: { Wrapper, CTableCard },
-  template: `<Wrapper width="168">
-    <CTableCard :table="table" @click="action"></CTableCard>
-  </Wrapper>`,
+  ...tableCardMixin,
   data () {
     return {
       table: {
-        ...table
+        ...usingTable,
+        calling: false,
+        action: 'menu'
       }
     }
-  },
-  methods: { action: action('clicked') }
+  }
 })
+
 export const CallingWaiter = () => ({
-  components: { Wrapper, CTableCard },
-  template: `<Wrapper width="168">
-    <CTableCard :table="table" @click="action"></CTableCard>
-  </Wrapper>`,
+  ...tableCardMixin,
   data () {
     return {
       table: {
-        ...table,
+        ...usingTable,
         calling: true,
         action: 'waiter'
       }
     }
-  },
-  methods: { action: action('clicked') }
+  }
 })
+
 export const WaitingFood = () => ({
-  components: { Wrapper, CTableCard },
-  template: `<Wrapper width="168">
-    <CTableCard :table="table" @click="action"></CTableCard>
-  </Wrapper>`,
+  ...tableCardMixin,
   data () {
     return {
       table: {
-        ...table,
+        ...usingTable,
         action: 'waiting'
       }
     }
-  },
-  methods: { action: action('clicked') }
+  }
 })
+
 export const OrderReady = () => ({
-  components: { Wrapper, CTableCard },
-  template: `<Wrapper width="168">
-    <CTableCard :table="table" @click="action"></CTableCard>
-  </Wrapper>`,
+  ...tableCardMixin,
   data () {
     return {
       table: {
-        ...table,
+        ...usingTable,
         calling: true,
         action: 'order-ready'
       }
     }
-  },
-  methods: { action: action('clicked') }
+  }
 })
+
 export const AlreadyServed = () => ({
-  components: { Wrapper, CTableCard },
-  template: `<Wrapper width="168">
-    <CTableCard :table="table" @click="action"></CTableCard>
-  </Wrapper>`,
+  ...tableCardMixin,
   data () {
     return {
       table: {
-        ...table,
+        ...usingTable,
         action: 'eating'
       }
     }
-  },
-  methods: { action: action('clicked') }
+  }
 })
+
 export const RequestingPayment = () => ({
-  components: { Wrapper, CTableCard },
-  template: `<Wrapper width="168">
-    <CTableCard :table="table" @click="action"></CTableCard>
-  </Wrapper>`,
+  ...tableCardMixin,
   data () {
     return {
       table: {
-        ...table,
+        ...usingTable,
         calling: true,
         action: 'bill'
       }
     }
-  },
-  methods: { action: action('clicked') }
+  }
+})
+
+export const FreeTable = () => ({
+  ...tableCardMixin,
+  data () {
+    return {
+      table
+    }
+  }
+})
+
+export const ReservedTable = () => ({
+  ...tableCardMixin,
+  data () {
+    return {
+      table: {
+        ...table,
+        reservation: '2020-01-26T01:52:17-03:00'
+      }
+    }
+  }
 })
