@@ -1,13 +1,19 @@
-# Waitress
+<h1 align="center">Waitress</h1>
+<p align="center">
+  
+  <a href="https://waitress.netlify.com">
+    <img alt="Coc Logo" src="https://user-images.githubusercontent.com/9284273/77238711-80a67f00-6bb1-11ea-95e1-34f86746e8f3.png" height="160" />
+  </a>
+  <p align="center">
+    <a href="https://waitress.netlify.com">Live app</a>
+     -
+    <a href="https://waitress-storybook.netlify.com">Storybook</a>
+  </p>
+</p>
 
-[Live app](https://waitress.netlify.com) - [Storybook](https://waitress-storybook.netlify.com)
+Lorem ipsum dolor sit amet, nunc turpis libero, eleifend et mauris ac, luctus pellentesque ex. Sed vulputate, lectus a tempus consequat, magna ligula imperdiet tellus, in dictum lorem lacus nec orci. Praesent vehicula leo in finibus auctor.
 
-[Flaticon](https://www.flaticon.com) - Icons made by:
-[photo3idea-studio](https://www.flaticon.com/authors/photo3idea-studio),
-[smashicons](https://www.flaticon.com/authors/smashicons), 
-[itim2101](https://www.flaticon.com/authors/itim2101), 
-[freepik](https://www.flaticon.com/authors/freepik), 
-[those-icons](https://www.flaticon.com/authors/those-icons)
+Sed non maximus nulla, eu consequat risus.
 
 # How to 
 <details>
@@ -89,3 +95,10 @@
   yarn lint
   ```
 </details>
+
+[Flaticon](https://www.flaticon.com) - Icons made by:
+[photo3idea-studio](https://www.flaticon.com/authors/photo3idea-studio),
+[smashicons](https://www.flaticon.com/authors/smashicons), 
+[itim2101](https://www.flaticon.com/authors/itim2101), 
+[freepik](https://www.flaticon.com/authors/freepik), 
+[those-icons](https://www.flaticon.com/authors/those-icons)
