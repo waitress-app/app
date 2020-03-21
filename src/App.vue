@@ -1,6 +1,5 @@
 <template>
-  <div id="app" class="import '../src/plugins/theme';
-">
+  <div id="app" class="c-app">
     <Loading />
     <transition name="fade" mode="out-in">
       <router-view/>
