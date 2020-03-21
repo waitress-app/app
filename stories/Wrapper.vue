@@ -42,13 +42,14 @@ export default {
 
 <style>
 html, body, #root {
-  height: 100%
+  height: 98%
 }
 #root {
   display: flex
 }
 .theme-switch {
   position: absolute;
+  z-index: 999;
   top: 10px;
   left: 10px;
   background: #999999;
