@@ -39,9 +39,7 @@
           <CQRcodeList @select="showqr = true" @cancel="qrcode = false" v-if="!showqr" style="height:200px;padding-top:42px"/>
         </div>
         <div v-else key="qrcode">
-          <div style="text-align:center;padding-top:42px;padding-bottom:36px">
-            <img src="../assets/picpay-qr.png" alt="" style="margin:auto" @click="billingPayment">
-          </div>
+          <CQRcodePayment @approved="billingPayment" />
         </div>
       </transition>
     </div>
@@ -53,6 +51,7 @@ import CAvatar from '@/components/core/Avatar'
 import CButtonGroup from '@/components/core/ButtonGroup'
 import CModal from '@/components/core/Modal'
 import CQRcodeList from '@/components/QRcodeList'
+import CQRcodePayment from '@/components/QRcodePayment'
 import { mapGetters, mapActions } from 'vuex'
 // import { mapActions } from 'vuex'
 export default {
@@ -60,7 +59,8 @@ export default {
     CModal,
     CAvatar,
     CButtonGroup,
-    CQRcodeList
+    CQRcodeList,
+    CQRcodePayment
   },
   data () {
     return {
