@@ -1,20 +1,36 @@
-# Waitress
-
-![Build test](https://github.com/Renato66/waitress/workflows/Build%20test/badge.svg)
-![Unit test](https://github.com/Renato66/waitress/workflows/Unit%20test/badge.svg)
-![E2E test](https://github.com/Renato66/waitress/workflows/E2E%20test/badge.svg)
-
-### Checkout the [live app](https://waitress.netlify.com) && [storybook](https://waitress-storybook.netlify.com)
-
 <p align="center">
   <a href="https://waitress.netlify.com">
-    <img alt="Coc Logo" src="https://user-images.githubusercontent.com/9284273/77238711-80a67f00-6bb1-11ea-95e1-34f86746e8f3.png" height="160" />
+    <img alt="Coc Logo" src="https://user-images.githubusercontent.com/9284273/77502892-f1140100-6e3a-11ea-8179-32a66a8de7ed.png" height="160" />
+  </a>
+</p>
+<p align="center">
+  <a href='https://github.com/Renato66/waitress/actions?query=workflow%3A"Build+test"'>
+    <img alt="Build test" src="https://github.com/Renato66/waitress/workflows/Build%20test/badge.svg" />
+  </a>
+   <a href='https://github.com/Renato66/waitress/actions?query=workflow%3A"Unit+test"'>
+    <img alt="Unit test" src="https://github.com/Renato66/waitress/workflows/Unit%20test/badge.svg" />
+  </a>
+   <a href='https://github.com/Renato66/waitress/actions?query=workflow%3A"E2E+test"'>
+    <img alt="E2E test" src="https://github.com/Renato66/waitress/workflows/E2E%20test/badge.svg" />
   </a>
 </p>
 
-Lorem ipsum dolor sit amet, nunc turpis libero, eleifend et mauris ac, luctus pellentesque ex. Sed vulputate, lectus a tempus consequat, magna ligula imperdiet tellus, in dictum lorem lacus nec orci. Praesent vehicula leo in finibus auctor.
+<p align="center">
+  <a href="https://waitress.netlify.com">
+    live app
+  </a>
+  -
+  <a href="https://waitress-storybook.netlify.com">
+    storybook
+  </a>
+</p>
 
-Sed non maximus nulla, eu consequat risus.
+Waitress is an app made for restaurantes to make life easier for magangers, waiters, cooks and clients
+
+ - Managers can see graphics, about their clients and incomes.
+ - Waiters can manage tables singin their costumers, take orders, generate the bills and splits and see their tips inside the app.
+ - Cooks can see their next orders.
+ - Clients can check in, call for waiter, see an digital version of your menu.
 
 # How to 
 <details>
