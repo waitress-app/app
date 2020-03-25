@@ -11,9 +11,17 @@
       </div>
       <CButton :disabled="loadingPicture || !user" @click="logIn">Entrar</CButton>
       <p v-if="user" class="c-link caption" @click="refreshUser">
-        não é {{ user.name }}?
+        {{ $t('login.notMe', { name: user.name }) }}
       </p>
     </CPaper>
+    <div class="text-center mt-2">
+      <img
+        :src="`https://www.countryflags.io/${$i18n.locale.split('-')[1]}/shiny/32.png`"
+        :alt="$i18n.locale"
+        class="c-link"
+        @click="$router.push({ query: { locale: 'change' }})"
+      >
+    </div>
   </div>
 </template>
 

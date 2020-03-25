@@ -1,6 +1,7 @@
 <template>
   <div id="app" class="c-app">
-    <Loading />
+    <CLoading />
+    <CChangeLocale />
     <transition name="fade" mode="out-in">
       <router-view/>
     </transition>
@@ -8,10 +9,12 @@
 </template>
 
 <script>
-import Loading from '@/components/Loading'
+import CLoading from '@/components/Loading'
+import CChangeLocale from '@/components/ChangeLocale'
 export default {
   components: {
-    Loading
+    CLoading,
+    CChangeLocale
   }
 }
 </script>
