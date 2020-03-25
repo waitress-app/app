@@ -113,6 +113,11 @@ Waitress is an app made for restaurantes to make life easier for magangers, wait
   ```
 </details>
 
+# Credits
+
+[Flaticon](https://br.freepik.com) - Image made by:
+[macrovector](https://br.freepik.com/fotos-vetores-gratis/menu)
+
 [Flaticon](https://www.flaticon.com) - Icons made by:
 [photo3idea-studio](https://www.flaticon.com/authors/photo3idea-studio),
 [smashicons](https://www.flaticon.com/authors/smashicons), 
