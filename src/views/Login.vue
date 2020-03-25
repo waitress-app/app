@@ -9,7 +9,7 @@
           <CAvatar class="c-frame__picture" v-if="user" :src="user.picture" alt="User avatar" />
         </transition>
       </div>
-      <CButton :disabled="loadingPicture || !user" @click="logIn">Entrar</CButton>
+      <CButton :disabled="loadingPicture || !user" @click="logIn">{{ $t('login.login') }}</CButton>
       <p v-if="user" class="c-link caption" @click="refreshUser">
         {{ $t('login.notMe', { name: user.name }) }}
       </p>

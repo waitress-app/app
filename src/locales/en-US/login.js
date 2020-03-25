@@ -1,4 +1,5 @@
 export default {
-  notMe: 'aren\'t you {name}?',
+  notMe: 'Aren\'t you {name}?',
+  login: 'Log in',
   actual: 'English'
 }
