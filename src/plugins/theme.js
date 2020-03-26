@@ -33,7 +33,9 @@ const toogleTheme = () => {
   const theme = document.documentElement.getAttribute('data-theme')
   switchTheme(theme !== 'dark')
 }
-window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => switchTheme(e.matches))
+if (window.matchMedia('(prefers-color-scheme: dark)').addEventListener) {
+  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => switchTheme(e.matches))
+}
 
 const darkMode = window.matchMedia('(prefers-color-scheme: dark)').matches || false
 switchTheme(darkMode)
