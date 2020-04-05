@@ -2,6 +2,7 @@
   <div id="app" class="c-app">
     <CLoading />
     <CChangeLocale />
+    <CUpdateFound />
     <transition name="fade" mode="out-in">
       <router-view/>
     </transition>
@@ -14,7 +15,8 @@ import CChangeLocale from '@/components/ChangeLocale'
 export default {
   components: {
     CLoading,
-    CChangeLocale
+    CChangeLocale,
+    CUpdateFound: () => import('@/components/UpdateFound')
   }
 }
 </script>
