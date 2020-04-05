@@ -7,11 +7,7 @@ export default {
   },
   methods: {
     link () {
-      if (this.src) {
-        this.$router.push(this.src)
-      } else {
-        this.$emit('click')
-      }
+      this.src ? this.$router.push(this.src) : this.$emit('click')
     }
   },
   render (h) {

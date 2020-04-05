@@ -49,11 +49,7 @@ export default {
       this.open = false
     },
     select (id) {
-      if (!this.share[id]) {
-        this.$set(this.share, id, true)
-      } else {
-        this.$delete(this.share, id)
-      }
+      !this.share[id] ? this.$set(this.share, id, true) : this.$delete(this.share, id)
     }
   },
   computed: {

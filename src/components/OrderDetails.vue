@@ -78,7 +78,7 @@ export default {
         share: this.share,
         item: this.itemId
       })
-      this.open = false
+      this.$router.go(-3)
     },
     cancelOrder () {
       // this.setSelectOrder(null)

@@ -17,9 +17,8 @@ export default {
           ...elem,
           paid: true
         }
-      } else {
-        return elem
       }
+      return elem
     })
   }
 }

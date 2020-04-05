@@ -21,12 +21,7 @@ const style = document.createElement('style')
 head.appendChild(style)
 
 style.type = 'text/css'
-if (style.styleSheet) {
-  // This is required for IE8 and below.
-  style.styleSheet.cssText = css
-} else {
-  style.appendChild(document.createTextNode(css))
-}
+style.styleSheet ? style.styleSheet.cssText = css : style.appendChild(document.createTextNode(css))
 
 const switchTheme = (darkMode) => document.documentElement.setAttribute('data-theme', darkMode ? 'dark' : 'light')
 const toogleTheme = () => {

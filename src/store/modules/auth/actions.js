@@ -18,8 +18,7 @@ export default {
     if (getters.user !== null) {
       // verify jwt / refresh token
       return ''
-    } else {
-      return ''
     }
+    return ''
   }
 }

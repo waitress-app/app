@@ -100,7 +100,7 @@ export default {
         total: this.bill,
         tips: (this.bill * this.avaliableTips[this.tip].calc) - this.bill
       })
-      this.open = false
+      this.$router.go(-2)
     }
   },
   watch: {
@@ -123,11 +123,7 @@ export default {
     bill () {
       if (!this.storedCustomer.id) return 0
       return this.orders.reduce((acc, order) => {
-        if (order.share.find(customer => customer === this.storedCustomer.id)) {
-          return acc + (1 / order.share.length * order.total)
-        } else {
-          return acc
-        }
+        return order.share.find(customer => customer === this.storedCustomer.id) ? acc + (1 / order.share.length * order.total) : acc
       }, 0)
     },
     open: {
