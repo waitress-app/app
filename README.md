@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://waitress.netlify.com">
+  <a href="https://waitress.netlify.app">
     <img alt="Coc Logo" src="https://user-images.githubusercontent.com/9284273/77502892-f1140100-6e3a-11ea-8179-32a66a8de7ed.png" height="160" />
   </a>
 </p>
@@ -16,11 +16,11 @@
 </p>
 
 <p align="center">
-  <a href="https://waitress.netlify.com">
+  <a href="https://waitress.netlify.app">
     live app
   </a>
   -
-  <a href="https://waitress-storybook.netlify.com">
+  <a href="https://waitress-storybook.netlify.app">
     storybook
   </a>
 </p>
