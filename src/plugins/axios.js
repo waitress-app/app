@@ -3,7 +3,7 @@ import Vue from 'vue'
 import axios from 'axios'
 import store from '../store'
 
-axios.defaults.baseURL = 'https://api.myjson.com/bins/'
+axios.defaults.baseURL = 'https://waitress.netlify.app/api/'
 
 axios.interceptors.request.use(async (config) => {
   const token = await store.dispatch('auth/currentSession')

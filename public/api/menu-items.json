@@ -1,0 +1,253 @@
+{
+  "0": {
+    "src": "https://img.buzzfeed.com/buzzfeed-static/static/2018-06/25/5/enhanced/buzzfeed-prod-web-05/enhanced-buzz-32149-1529920765-2.jpg?downsize=300:*&output-format=auto&output-quality=auto",
+    "text": "Patê",
+    "value": 35.5,
+    "description": "Exclusivo patê de foie, acompanham 3 pães de leite, 3 fatias de pão preto",
+    "type": "meal"
+  },
+  "1": {
+    "src": "https://img.buzzfeed.com/buzzfeed-static/static/2018-06/25/6/enhanced/buzzfeed-prod-web-05/enhanced-buzz-931-1529920963-0.jpg?downsize=300:*&output-format=auto&output-quality=auto",
+    "text": "Azeitonas",
+    "value": 27,
+    "description": "Só azeitona mesmo, as verdes",
+    "type": "meal"
+  },
+  "2": {
+    "src": "https://img.buzzfeed.com/buzzfeed-static/static/2018-06/25/6/enhanced/buzzfeed-prod-web-06/enhanced-buzz-6474-1529920992-3.jpg?downsize=300:*&output-format=auto&output-quality=auto",
+    "text": "Salmão defumado",
+    "value": 33,
+    "description": "recheado com finas lâminas de salmão defumado, creme cheese e alcaparras, regado com azeite e parmesão",
+    "type": "meal"
+  },
+  "3": {
+    "src": "https://img.buzzfeed.com/buzzfeed-static/static/2018-06/25/6/enhanced/buzzfeed-prod-web-02/enhanced-buzz-26235-1529921037-4.jpg?downsize=300:*&output-format=auto&output-quality=auto",
+    "text": "Quinoa",
+    "value": 13.5,
+    "description": "Acompanha milho torrado, batata e molho caseiro",
+    "unavaliable": true,
+    "type": "meal"
+  },
+  "4": {
+    "src": "https://img.buzzfeed.com/buzzfeed-static/static/2018-06/25/6/enhanced/buzzfeed-prod-web-03/enhanced-buzz-22944-1529921173-1.jpg?downsize=300:*&output-format=auto&output-quality=auto",
+    "text": "Lagosta",
+    "value": 12,
+    "type": "meal"
+  },
+  "5": {
+    "src": "https://img.buzzfeed.com/buzzfeed-static/static/2018-06/25/6/enhanced/buzzfeed-prod-web-01/enhanced-buzz-6572-1529921229-0.jpg?downsize=300:*&output-format=auto&output-quality=auto",
+    "text": "Trufas",
+    "value": 30,
+    "type": "dessert"
+  },
+  "6": {
+    "src": "https://img.buzzfeed.com/buzzfeed-static/static/2018-06/25/6/enhanced/buzzfeed-prod-web-06/enhanced-buzz-6673-1529921264-0.jpg?downsize=300:*&output-format=auto&output-quality=auto",
+    "text": "Ostras",
+    "value": 32.5,
+    "type": "meal"
+  },
+  "7": {
+    "src": "https://img.buzzfeed.com/buzzfeed-static/static/2018-06/25/6/enhanced/buzzfeed-prod-web-03/enhanced-buzz-23500-1529921331-0.jpg?downsize=300:*&output-format=auto&output-quality=auto",
+    "text": "Creme de limão siciliano",
+    "value": 16,
+    "type": "dessert"
+  },
+  "8": {
+    "src": "https://img.buzzfeed.com/buzzfeed-static/static/2018-06/25/6/enhanced/buzzfeed-prod-web-01/enhanced-buzz-6264-1529921383-1.jpg?downsize=300:*&output-format=auto&output-quality=auto",
+    "text": "Pão de fermentação natural",
+    "value": 5,
+    "type": "meal"
+  },
+  "9": {
+    "src": "https://img.buzzfeed.com/buzzfeed-static/static/2018-06/25/6/enhanced/buzzfeed-prod-web-02/enhanced-buzz-26421-1529921451-1.jpg?downsize=300:*&output-format=auto&output-quality=auto",
+    "text": "Aspargos",
+    "value": 16.5,
+    "type": "meal"
+  },
+  "10": {
+    "src": "https://img.buzzfeed.com/buzzfeed-static/static/2018-06/25/6/enhanced/buzzfeed-prod-web-02/enhanced-buzz-27272-1529921662-0.jpg?downsize=300:*&output-format=auto&output-quality=auto",
+    "text": "Macarons",
+    "value": 11,
+    "type": "dessert"
+  },
+  "11": {
+    "src": "https://img.buzzfeed.com/buzzfeed-static/static/2018-06/25/6/enhanced/buzzfeed-prod-web-05/enhanced-buzz-1596-1529921737-0.jpg?downsize=300:*&output-format=auto&output-quality=auto",
+    "text": "Filé de Atum",
+    "value": 6,
+    "type": "meal"
+  },
+  "12": {
+    "src": "https://img.buzzfeed.com/buzzfeed-static/static/2018-06/25/6/enhanced/buzzfeed-prod-web-03/enhanced-buzz-23531-1529921802-2.jpg?downsize=300:*&output-format=auto&output-quality=auto",
+    "text": "Caviar",
+    "value": 19.5,
+    "type": "meal"
+  },
+  "13": {
+    "src": "https://img.buzzfeed.com/buzzfeed-static/static/2018-06/25/6/enhanced/buzzfeed-prod-web-01/enhanced-buzz-7189-1529921955-0.jpg?downsize=300:*&output-format=auto&output-quality=auto",
+    "text": "Gim tônica",
+    "value": 35,
+    "type": "drinks"
+  },
+  "14": {
+    "src": "https://img.buzzfeed.com/buzzfeed-static/static/2018-06/25/6/enhanced/buzzfeed-prod-web-04/enhanced-buzz-17613-1529922011-0.jpg?downsize=300:*&output-format=auto&output-quality=auto",
+    "text": "Figo",
+    "value": 10,
+    "type": "dessert"
+  },
+  "15": {
+    "src": "https://img.buzzfeed.com/buzzfeed-static/static/2018-06/25/6/enhanced/buzzfeed-prod-web-05/enhanced-buzz-1840-1529922043-0.jpg?downsize=300:*&output-format=auto&output-quality=auto",
+    "text": "Granola",
+    "value": 37.5,
+    "type": "dessert"
+  },
+  "16": {
+    "src": "https://img.buzzfeed.com/buzzfeed-static/static/2018-06/25/6/enhanced/buzzfeed-prod-web-03/enhanced-buzz-24462-1529922104-6.jpg?downsize=300:*&output-format=auto&output-quality=auto",
+    "text": "Alcachofra",
+    "value": 19,
+    "type": "meal"
+  },
+  "17": {
+    "src": "https://img.buzzfeed.com/buzzfeed-static/static/2018-06/25/6/enhanced/buzzfeed-prod-web-06/enhanced-buzz-7984-1529922118-1.jpg?downsize=300:*&output-format=auto&output-quality=auto",
+    "text": "Robalo",
+    "value": 6,
+    "type": "meal"
+  },
+  "18": {
+    "src": "https://img.buzzfeed.com/buzzfeed-static/static/2018-06/25/6/enhanced/buzzfeed-prod-web-05/enhanced-buzz-2395-1529922150-3.jpg?downsize=300:*&output-format=auto&output-quality=auto",
+    "text": "Champanhe",
+    "value": 14.5,
+    "type": "drinks"
+  },
+  "19": {
+    "src": "https://img.buzzfeed.com/buzzfeed-static/static/2018-06/25/6/enhanced/buzzfeed-prod-web-06/enhanced-buzz-8351-1529922212-0.jpg?downsize=300:*&output-format=auto&output-quality=auto",
+    "text": "Mexilhões",
+    "value": 16,
+    "type": "meal"
+  },
+  "20": {
+    "src": "https://img.buzzfeed.com/buzzfeed-static/static/2018-06/25/6/enhanced/buzzfeed-prod-web-01/enhanced-buzz-8270-1529922240-0.jpg?downsize=300:*&output-format=auto&output-quality=auto",
+    "text": "Chips de Legumes",
+    "value": 33,
+    "type": "meal"
+  },
+  "21": {
+    "src": "https://img.buzzfeed.com/buzzfeed-static/static/2018-06/25/6/enhanced/buzzfeed-prod-web-03/enhanced-buzz-24029-1529922313-4.jpg?downsize=300:*&output-format=auto&output-quality=auto",
+    "text": "Homus",
+    "value": 35.5,
+    "type": "meal"
+  },
+  "22": {
+    "src": "https://img.buzzfeed.com/buzzfeed-static/static/2018-06/25/6/enhanced/buzzfeed-prod-web-03/enhanced-buzz-24495-1529922434-4.jpg?downsize=300:*&output-format=auto&output-quality=auto",
+    "text": "Caranguejo",
+    "value": 38,
+    "type": "meal"
+  },
+  "23": {
+    "src": "https://img.buzzfeed.com/buzzfeed-static/static/2018-06/25/6/enhanced/buzzfeed-prod-web-05/enhanced-buzz-2309-1529922482-0.jpg?downsize=300:*&output-format=auto&output-quality=auto",
+    "text": "Trufas de Champanhe",
+    "value": 10,
+    "type": "dessert"
+  },
+  "24": {
+    "src": "https://img.buzzfeed.com/buzzfeed-static/static/2018-06/25/6/enhanced/buzzfeed-prod-web-05/enhanced-buzz-3106-1529922525-0.jpg?downsize=300:*&output-format=auto&output-quality=auto",
+    "text": "Gaspacho",
+    "value": 30.5,
+    "type": "meal"
+  },
+  "25": {
+    "src": "https://img.buzzfeed.com/buzzfeed-static/static/2018-06/25/6/enhanced/buzzfeed-prod-web-02/enhanced-buzz-27792-1529922566-11.jpg?downsize=300:*&output-format=auto&output-quality=auto",
+    "text": "Tâmaras",
+    "value": 21,
+    "type": "dessert"
+  },
+  "26": {
+    "src": "https://img.buzzfeed.com/buzzfeed-static/static/2018-06/25/6/enhanced/buzzfeed-prod-web-02/enhanced-buzz-27792-1529922635-12.jpg?downsize=300:*&output-format=auto&output-quality=auto",
+    "text": "Brioche",
+    "value": 13,
+    "type": "meal"
+  },
+  "27": {
+    "src": "https://img.buzzfeed.com/buzzfeed-static/static/2018-06/25/6/enhanced/buzzfeed-prod-web-04/enhanced-buzz-19510-1529922754-0.jpg?downsize=300:*&output-format=auto&output-quality=auto",
+    "text": "Focaccia",
+    "value": 37.5,
+    "type": "meal"
+  },
+  "28": {
+    "src": "https://img.buzzfeed.com/buzzfeed-static/static/2018-06/25/6/enhanced/buzzfeed-prod-web-04/enhanced-buzz-19602-1529922790-0.jpg?downsize=300:*&output-format=auto&output-quality=auto",
+    "text": "Perdiz",
+    "value": 10,
+    "type": "meal"
+  },
+  "29": {
+    "src": "https://img.buzzfeed.com/buzzfeed-static/static/2018-06/25/6/enhanced/buzzfeed-prod-web-05/enhanced-buzz-3106-1529922828-1.jpg?downsize=300:*&output-format=auto&output-quality=auto",
+    "text": "Água com gás",
+    "value": 15,
+    "type": "drinks"
+  },
+  "30": {
+    "src": "https://img.buzzfeed.com/buzzfeed-static/static/2018-06/25/6/enhanced/buzzfeed-prod-web-04/enhanced-buzz-19541-1529922916-1.jpg?downsize=300:*&output-format=auto&output-quality=auto",
+    "text": "Presunto de Parma",
+    "value": 36.5,
+    "type": "meal"
+  },
+  "31": {
+    "src": "https://img.buzzfeed.com/buzzfeed-static/static/2018-06/25/6/enhanced/buzzfeed-prod-web-05/enhanced-buzz-3969-1529922967-0.jpg?downsize=300:*&output-format=auto&output-quality=auto",
+    "text": "Azeite de pimenta-malagueta",
+    "value": 24,
+    "type": "meal"
+  },
+  "32": {
+    "src": "https://img.buzzfeed.com/buzzfeed-static/static/2018-06/25/6/enhanced/buzzfeed-prod-web-04/enhanced-buzz-19602-1529923032-1.jpg?downsize=300:*&output-format=auto&output-quality=auto",
+    "text": "Alho selvagem",
+    "value": 6,
+    "type": "meal"
+  },
+  "33": {
+    "src": "https://img.buzzfeed.com/buzzfeed-static/static/2018-06/25/6/enhanced/buzzfeed-prod-web-03/enhanced-buzz-25494-1529923077-5.jpg?downsize=300:*&output-format=auto&output-quality=auto",
+    "text": "Carne de veado",
+    "value": 35.5,
+    "type": "meal"
+  },
+  "34": {
+    "src": "https://img.buzzfeed.com/buzzfeed-static/static/2018-06/25/6/enhanced/buzzfeed-prod-web-06/enhanced-buzz-8975-1529923118-1.jpg?downsize=300:*&output-format=auto&output-quality=auto",
+    "text": "Molho de framboesa",
+    "value": 6,
+    "type": "meal"
+  },
+  "35": {
+    "src": "https://img.buzzfeed.com/buzzfeed-static/static/2018-06/25/6/enhanced/buzzfeed-prod-web-02/enhanced-buzz-29236-1529923169-1.jpg?downsize=300:*&output-format=auto&output-quality=auto",
+    "text": "Blini",
+    "value": 29,
+    "type": "meal"
+  },
+  "36": {
+    "src": "https://img.buzzfeed.com/buzzfeed-static/static/2018-06/25/6/enhanced/buzzfeed-prod-web-01/enhanced-buzz-9519-1529923216-10.jpg?downsize=300:*&output-format=auto&output-quality=auto",
+    "text": "Vinagre balsâmico",
+    "value": 39.5,
+    "type": "drinks"
+  },
+  "37": {
+    "src": "https://img.buzzfeed.com/buzzfeed-static/static/2018-06/25/6/enhanced/buzzfeed-prod-web-02/enhanced-buzz-30038-1529923457-0.jpg?downsize=300:*&output-format=auto&output-quality=auto",
+    "text": "Bife Kobe",
+    "value": 5,
+    "type": "meal"
+  },
+  "38": {
+    "src": "https://img.buzzfeed.com/buzzfeed-static/static/2018-06/25/6/enhanced/buzzfeed-prod-web-06/enhanced-buzz-8996-1529923359-4.jpg?downsize=300:*&output-format=auto&output-quality=auto",
+    "text": "Mil-folhas",
+    "value": 38,
+    "type": "dessert"
+  },
+  "39": {
+    "src": "https://img.buzzfeed.com/buzzfeed-static/static/2018-06/25/6/enhanced/buzzfeed-prod-web-03/enhanced-buzz-26606-1529923338-0.jpg?downsize=300:*&output-format=auto&output-quality=auto",
+    "text": "Queijo manchego",
+    "value": 39.5,
+    "type": "meal"
+  },
+  "40": {
+    "src": "https://img.buzzfeed.com/buzzfeed-static/static/2018-06/25/6/enhanced/buzzfeed-prod-web-06/enhanced-buzz-9072-1529923395-6.jpg?downsize=300:*&output-format=auto&output-quality=auto",
+    "text": "Morangos com creme",
+    "value": 9,
+    "type": "dessert"
+  }
+}
