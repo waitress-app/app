@@ -45,7 +45,7 @@ export default {
   },
   methods: {
     selectItem (id) {
-      this.$router.replace({
+      this.$router.push({
         query: {
           ...this.$route.query,
           menu: false,

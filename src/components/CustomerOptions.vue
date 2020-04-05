@@ -34,7 +34,7 @@ export default {
   },
   methods: {
     async order () {
-      this.$router.replace({
+      this.$router.push({
         query: {
           ...this.$route.query,
           menu: true
@@ -42,7 +42,7 @@ export default {
       })
     },
     async checkOut () {
-      this.$router.replace({
+      this.$router.push({
         query: {
           ...this.$route.query,
           checkout: true

@@ -3,7 +3,7 @@ import Vue from 'vue'
 import axios from 'axios'
 import store from '../store'
 
-axios.defaults.baseURL = 'https://waitress.netlify.app/api/'
+axios.defaults.baseURL = process.env.NODE_ENV === 'production' ? 'https://waitress.netlify.app/api/' : 'http://localhost:8080/api/'
 
 axios.interceptors.request.use(async (config) => {
   const token = await store.dispatch('auth/currentSession')

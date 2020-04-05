@@ -40,5 +40,9 @@ export default [
     meta: { requiresAuth: true },
     component: Table
 
+  },
+  {
+    path: '/table',
+    redirect: { name: 'tables-list' }
   }
 ]
