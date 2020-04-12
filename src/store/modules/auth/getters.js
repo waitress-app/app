@@ -1,5 +1,8 @@
 export default {
-  user  (state) {
+  user (state) {
     return state.user
+  },
+  companyId (state) {
+    return state.companyId
   }
 }

@@ -11,6 +11,7 @@ export default {
     // mocking api wait response
     await new Promise(resolve => setTimeout(resolve, 1000))
     commit('setUser', payload)
+    commit('setCompanyId', 'gdrnVHaLWM0maicdnoV4')
     dispatch('menu/getMenu', payload, { root: true })
     router.push({ name: 'tables-list' })
   },
