@@ -19,7 +19,7 @@
       </li>
       <li class="c-order-list__item" v-for="pay in pays" :key="pay.id">
         <div class="c-order-list__details">
-          <div class="c-order-list__name">
+          <div class="c-order-list__name" v-if="pay.customer">
             {{ pay.customer.name }}
           </div>
           <div class="c-order-list__tips">
@@ -63,9 +63,6 @@ export default {
     subTotal () {
       return this.orders.reduce((acc, elem) => elem.total + acc, 0)
     }
-  },
-  mounted () {
-    console.log(this.orders)
   }
 }
 </script>
