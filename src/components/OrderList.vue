@@ -58,7 +58,9 @@ export default {
   computed: {
     ...mapGetters('table', ['orders', 'pays']),
     total () {
-      return [...this.pays, ...this.orders].reduce((acc, elem) => elem.total + acc, 0)
+      const paid = this.pays.reduce((acc, elem) => elem.total + acc, 0)
+      const notPaid = this.orders.reduce((acc, elem) => elem.total + acc, 0)
+      return notPaid - paid
     },
     subTotal () {
       return this.orders.reduce((acc, elem) => elem.total + acc, 0)
