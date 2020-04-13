@@ -3,7 +3,7 @@
     <ul class="c-order-list">
       <li class="c-order-list__item" v-for="order in orders" :key="order.id">
         <div class="c-order-list__details">
-          <div class="c-order-list__name">
+          <div class="c-order-list__name" v-if="order.item">
             {{ order.quantity }}x - {{ order.item.text }}
           </div>
           <div class="c-order-list__avatars py-2">
@@ -63,6 +63,9 @@ export default {
     subTotal () {
       return this.orders.reduce((acc, elem) => elem.total + acc, 0)
     }
+  },
+  mounted () {
+    console.log(this.orders)
   }
 }
 </script>

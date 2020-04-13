@@ -4,6 +4,8 @@ export default {
   },
   clear: (state) => {
     state.user = null
+    state.companyId = null
+    state.username = null
   },
   setCompany: (state, payload) => {
     state.company = payload

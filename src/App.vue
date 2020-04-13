@@ -17,6 +17,9 @@ export default {
     CLoading,
     CChangeLocale,
     CUpdateFound: () => import('@/components/UpdateFound')
+  },
+  created () {
+    this.$store.dispatch('auth/connectDb')
   }
 }
 </script>

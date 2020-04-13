@@ -1,86 +1,87 @@
+import { firestoreAction } from 'vuexfire'
+import db from '@/plugins/firebase/firestore'
+import { firestore } from 'firebase/app'
+const Timestamp = firestore.Timestamp
+
 export default {
-  getTable: async ({ commit }) => {
-    try {
-      commit('app/toggleLoading', null, { root: true })
-      // const { data: result } = await Vue.prototype.$http.get(`rchv2`)
-      const result = {
-        id: 'hash-service-id-1',
-        number: '02',
-        code: '123456',
-        people: 1,
-        orders: [
-          {
-            id: '0',
-            quantity: 3,
-            share: ['hash-customer-id-1'],
-            notes: '',
-            item: '3'
-          },
-          {
-            id: '1',
-            quantity: 2,
-            share: ['hash-customer-id-3', 'hash-customer-id-1'],
-            notes: '',
-            item: '4'
-          }
-        ],
-        pays: [
-          {
-            customer: 'hash-customer-id-3',
-            total: -12,
-            tips: 1.2
-          }
-        ],
-        customers: [
-          {
-            id: 'hash-customer-id-1',
-            name: 'Renato Vicente',
-            avatar: 'https://randomuser.me/api/portraits/men/11.jpg'
-          },
-          {
-            id: 'hash-customer-id-2',
-            name: 'Diogo Nakaruma',
-            avatar: 'https://ui-avatars.com/api/?size=128&name=Diogo%20Nakaruma&color=fff&background=8d68f1'
-          },
-          {
-            id: 'hash-customer-id-3',
-            name: 'Karoline Hatamoto',
-            avatar: 'https://randomuser.me/api/portraits/women/11.jpg',
-            paid: true
-          }
-        ],
-        date: '2020-01-26T01:52:17-03:00',
-        calling: true,
-        action: 'waiter'
-      }
-      commit('setTable', result)
-      commit('app/toggleLoading', null, { root: true })
-    } catch (err) {
-      console.log(err)
-    }
-  },
-  addPerson: async ({ commit }, payload) => {
-    // await someApi()
-    commit('push_person', {
-      id: `hash-customer-id-${Math.floor(Math.random() * 10000)}`,
-      name: payload.name,
-      avatar: `https://ui-avatars.com/api/?size=128&name=${payload.name}&color=fff&background=8d68f1`,
-      date: new Date().toISOString()
-    })
-  },
-  requestOrder: async ({ commit }, payload) => {
-    try {
-      commit('app/toggleLoading', null, { root: true })
-      // const { data: result } = await Vue.prototype.$http.get(`17k4ti`)
-      commit('setOrder', {
-        ...payload,
-        date: new Date().toISOString()
+  getTable: firestoreAction(({ bindFirestoreRef, rootGetters, commit }, payload) => {
+    commit('setTableId', payload)
+    return bindFirestoreRef(
+      'table',
+      db.collection('company')
+        .doc(rootGetters['auth/companyId'])
+        .collection('table')
+        .doc(payload)
+    )
+  }),
+  turnOffCalling: firestoreAction(({ rootGetters, getters }) => {
+    return db.collection('company')
+      .doc(rootGetters['auth/companyId'])
+      .collection('table')
+      .doc(getters.tableId)
+      .update({ calling: false })
+  }),
+  addPerson: firestoreAction(async ({ rootGetters, getters }, payload) => {
+    const customerRef = await db.collection('company')
+      .doc(rootGetters['auth/companyId'])
+      .collection('manual_customers')
+      .add({
+        name: payload.name,
+        avatar: `https://ui-avatars.com/api/?size=128&name=${payload.name}&color=fff&background=8d68f1`,
+        arrivalAt: Timestamp.now()
       })
-      commit('app/toggleLoading', null, { root: true })
-    } catch (err) {
-      console.log(err)
+    const customers = [
+      ...getters.table.customers,
+      customerRef
+    ].sort((a, b) => (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0))
+    return db.collection('company')
+      .doc(rootGetters['auth/companyId'])
+      .collection('table')
+      .doc(getters.tableId)
+      .update({ customers })
+  }),
+  requestOrder: firestoreAction(async ({ rootGetters, getters }, payload) => {
+    console.log(payload)
+    console.log(payload.item.id)
+    const itemRef = await db.collection('company')
+      .doc(rootGetters['auth/companyId'])
+      .collection('menu')
+      .doc(payload.item.id)
+    const order = {
+      ...payload,
+      item: itemRef,
+      customers: payload.share.map(elem => getters.table.customers.find(customer => customer.id === elem)),
+      orderAt: Timestamp.now(),
+      total: payload.item.value * payload.quantity
     }
-  },
+    console.log(order)
+    const orderRef = await db.collection('company')
+      .doc(rootGetters['auth/companyId'])
+      .collection('order')
+      .add(order)
+    const orders = [
+      ...getters.table.orders,
+      orderRef
+    ]
+    return db.collection('company')
+      .doc(rootGetters['auth/companyId'])
+      .collection('table')
+      .doc(getters.tableId)
+      .update({ orders })
+  }),
+  // requestOrder: async ({ commit }, payload) => {
+  //   try {
+  //     commit('app/toggleLoading', null, { root: true })
+  //     // const { data: result } = await Vue.prototype.$http.get(`17k4ti`)
+  //     commit('setOrder', {
+  //       ...payload,
+  //       date: new Date().toISOString()
+  //     })
+  //     commit('app/toggleLoading', null, { root: true })
+  //   } catch (err) {
+  //     console.log(err)
+  //   }
+  // },
   checkout: async ({ commit }, payload) => {
     console.log(payload)
     try {

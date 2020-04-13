@@ -49,10 +49,7 @@ export default {
     }
   },
   methods: {
-    ...mapActions('table', ['getTable']),
-    turnOffCalling () {
-      this.table.calling = false
-    }
+    ...mapActions('table', ['getTable', 'turnOffCalling'])
   },
   computed: {
     ...mapGetters('table', ['table'])

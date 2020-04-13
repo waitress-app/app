@@ -76,7 +76,7 @@ export default {
         notes: this.notes,
         quantity: this.quantity,
         share: this.share,
-        item: this.itemId
+        item: this.item
       })
       this.$router.go(-3)
     },

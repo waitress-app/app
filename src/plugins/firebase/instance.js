@@ -1,5 +1,4 @@
 import firebase from 'firebase/app'
-
 export default firebase.initializeApp({
   apiKey: 'AIzaSyBOCGi5O2AWj9ZGrlB5aX3b0p4pzweHdeI',
   authDomain: 'waitress-6bc72.firebaseapp.com',
