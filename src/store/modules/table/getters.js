@@ -2,17 +2,20 @@ export default {
   tableId (state) {
     return state.tableId
   },
+  tables (state) {
+    return state.tables
+  },
   table (state) {
-    return state.table
+    return state.tables.find(elem => elem.id === state.tableId) || {}
   },
-  orders (state) {
-    return state.table.orders || []
+  orders (state, getters) {
+    return getters.table.orders || []
   },
-  pays (state) {
-    return state.table.pays || []
+  pays (state, getters) {
+    return getters.table.pays || []
   },
-  customers (state) {
-    return state.table.customers || []
+  customers (state, getters) {
+    return getters.table.customers || []
   },
   activeCustomers (state, getters) {
     const customers = getters.customers.filter(elem => typeof elem === 'object')

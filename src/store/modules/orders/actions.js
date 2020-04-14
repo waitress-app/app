@@ -4,16 +4,10 @@ import db from '@/plugins/firebase/firestore'
 export default {
   getOrders: firestoreAction(({ bindFirestoreRef, rootGetters }) => {
     return bindFirestoreRef(
-      'tables',
+      'orders',
       db.collection('company')
         .doc(rootGetters['auth/companyId'])
-        .collection('orders')
+        .collection('order')
     )
-  }),
-  addOrders: firestoreAction(({ rootGetters }, payload) => {
-    return db.collection('company')
-      .doc(rootGetters['auth/companyId'])
-      .collection('orders')
-      .add(payload)
   })
 }

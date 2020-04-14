@@ -7,14 +7,20 @@ export default {
       'tables',
       db.collection('company')
         .doc(rootGetters['auth/companyId'])
-        .collection('tables')
+        .collection('table')
         .orderBy('number')
     )
   }),
-  addTables: firestoreAction(({ rootGetters }, payload) => {
+  addTable: firestoreAction(({ rootGetters }, payload) => {
+    const table = {
+      ...payload,
+      customers: [],
+      pays: [],
+      orders: []
+    }
     return db.collection('company')
       .doc(rootGetters['auth/companyId'])
-      .collection('tables')
-      .add(payload)
+      .collection('table')
+      .add(table)
   })
 }

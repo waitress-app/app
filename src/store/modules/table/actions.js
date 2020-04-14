@@ -4,15 +4,24 @@ import { firestore } from 'firebase/app'
 const { Timestamp, FieldValue } = firestore
 
 export default {
-  getTable: firestoreAction(({ bindFirestoreRef, rootGetters, commit }, payload) => {
-    commit('setTableId', payload)
+  getTables: firestoreAction(({ bindFirestoreRef, rootGetters }) => {
     return bindFirestoreRef(
-      'table',
+      'tables',
       db.collection('company')
         .doc(rootGetters['auth/companyId'])
         .collection('table')
-        .doc(payload)
+        .orderBy('number')
     )
+  }),
+  getTable: firestoreAction(({ bindFirestoreRef, rootGetters, commit }, payload) => {
+    commit('setTableId', payload)
+    // return bindFirestoreRef(
+    //   'table',
+    //   db.collection('company')
+    //     .doc(rootGetters['auth/companyId'])
+    //     .collection('table')
+    //     .doc(payload)
+    // )
   }),
   turnOffCalling: firestoreAction(({ rootGetters, getters }) => {
     return db.collection('company')
@@ -78,5 +87,64 @@ export default {
       .collection('table')
       .doc(getters.tableId)
       .update({ pays: FieldValue.arrayUnion(paymentRef) })
+  }),
+  closeTable: firestoreAction(async ({ rootGetters, getters }, payload) => {
+    // Refactor promisse.all
+    const tips = getters.table.pays.reduce((acc, elem) => acc + elem.tips, 0)
+    if (tips) {
+      await db.collection('company')
+        .doc(rootGetters['auth/companyId'])
+        .collection('waiter')
+        .doc(rootGetters['auth/userId'])
+        .collection('tips')
+        .add({
+          tips,
+          date: Timestamp.now()
+        })
+      await db.collection('company')
+        .doc(rootGetters['auth/companyId'])
+        .collection('waiter')
+        .doc(rootGetters['auth/userId'])
+        .update({
+          totalTips: FieldValue.increment(tips)
+        })
+    }
+
+    await db.collection('company')
+      .doc(rootGetters['auth/companyId'])
+      .collection('receipts')
+      .add(getters.table)
+    return db.collection('company')
+      .doc(rootGetters['auth/companyId'])
+      .collection('table')
+      .doc(getters.tableId)
+      .update({
+        customers: [],
+        pays: [],
+        orders: [],
+        calling: FieldValue.delete(),
+        arrivedAt: FieldValue.delete(),
+        code: FieldValue.delete()
+      })
+  }),
+  openTable: firestoreAction(({ rootGetters }, payload) => {
+    const generateCode = () => {
+      const length = 6
+      const charset = 'ABCDEFGHJKLMNPQRSTUVWXYZ123456789'
+      let retVal = ''
+      for (var i = 0, n = charset.length; i < length; ++i) {
+        retVal += charset.charAt(Math.floor(Math.random() * n))
+      }
+      return retVal
+    }
+    return db.collection('company')
+      .doc(rootGetters['auth/companyId'])
+      .collection('table')
+      .doc(payload)
+      .update({
+        calling: false,
+        code: generateCode(),
+        arrivedAt: Timestamp.now()
+      })
   })
 }

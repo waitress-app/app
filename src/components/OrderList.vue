@@ -37,8 +37,8 @@
     <div class="headline" v-if="total !== 0">
       Total: {{ total | currency }}
     </div>
-    <div v-else class="text-center mt-5" @click="$router.push('/')">
-      <CButton>
+    <div v-else class="text-center mt-5" >
+      <CButton @click="generateRecipt()">
         Gerar nota
       </CButton>
     </div>
@@ -46,7 +46,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
 import CAvatar from '@/components/core/Avatar'
 import CButton from '@/components/core/Button'
 
@@ -54,6 +54,15 @@ export default {
   components: {
     CButton,
     CAvatar
+  },
+  methods: {
+    ...mapActions('table', ['closeTable']),
+    async generateRecipt () {
+      this.loading = true
+      await this.closeTable()
+      this.loading = false
+      this.$router.push('/')
+    }
   },
   computed: {
     ...mapGetters('table', ['orders', 'pays']),
