@@ -13,7 +13,7 @@
         </p>
       </div>
       <div class="c-navbar__tips">
-        <CTips :goal="100" :tips="54.32" />
+        <CTips :goal="waiter.goal" :tips="waiter.totalTips" />
       </div>
     </div>
     <CTabs v-model="tab" :items="tabs" dataValue="route" class="mb-8"/>
@@ -64,7 +64,8 @@ export default {
         this.$router.push({ name: value })
       }
     },
-    ...mapGetters('auth', ['user'])
+    ...mapGetters('auth', ['user']),
+    ...mapGetters('waiter', ['waiter'])
   }
 }
 </script>

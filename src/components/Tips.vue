@@ -3,7 +3,7 @@
     <div class="c-tips__value title">
       {{ tips | currency }}
     </div>
-    <CProgressBar :value="50" />
+    <CProgressBar :value="progress" />
   </div>
 </template>
 
@@ -19,6 +19,14 @@ export default {
     },
     tips: {
       type: Number
+    }
+  },
+  computed: {
+    progress () {
+      if (this.tips > this.goal) {
+        return 100
+      }
+      return 100 * this.tips / this.goal
     }
   }
 }
