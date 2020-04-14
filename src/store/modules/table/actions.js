@@ -146,5 +146,17 @@ export default {
         code: generateCode(),
         arrivedAt: Timestamp.now()
       })
+  }),
+  addTable: firestoreAction(({ rootGetters }, payload) => {
+    const table = {
+      ...payload,
+      customers: [],
+      pays: [],
+      orders: []
+    }
+    return db.collection('company')
+      .doc(rootGetters['auth/companyId'])
+      .collection('table')
+      .add(table)
   })
 }

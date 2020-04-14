@@ -28,7 +28,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters('tables', ['tables'])
+    ...mapGetters('table', ['tables'])
   }
 }
 </script>
