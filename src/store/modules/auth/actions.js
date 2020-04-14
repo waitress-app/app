@@ -19,6 +19,7 @@ export default {
       commit('app/toggleLoading', null, { root: true })
       await dispatch('tables/getTables', null, { root: true })
       await dispatch('menu/getMenu', null, { root: true })
+      await dispatch('waiter/getWaiter', null, { root: true })
       commit('app/toggleLoading', null, { root: true })
     }
   },
