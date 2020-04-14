@@ -13,7 +13,7 @@
         </p>
       </div>
       <div class="c-navbar__tips">
-        <CTips :goal="waiter.goal" :tips="waiter.totalTips" />
+        <CTips v-if="waiter" :goal="waiter.goal" :tips="waiter.totalTips" />
       </div>
     </div>
     <CTabs v-model="tab" :items="tabs" dataValue="route" class="mb-8"/>

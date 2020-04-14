@@ -68,7 +68,8 @@ export default {
     },
     async getUser () {
       this.loadingPicture = true
-      const response = await fetch('https://randomuser.me/api/')
+      // const response = await fetch('https://randomuser.me/api/')
+      const response = { ok: false }
       if (response.ok) { // if HTTP-status is 200-299
         const { results: userList } = await response.json()
         const user = userList[0]
@@ -78,7 +79,6 @@ export default {
           name: `${user.name.first}`
         }
       } else {
-        console.warn('Randomuser API not working :/ \n Error ' + response.status)
         this.user = {
           id: '5151c943-a23e-4a91-89b1-7b2e8feb30cd',
           picture: 'https://randomuser.me/api/portraits/men/90.jpg',
