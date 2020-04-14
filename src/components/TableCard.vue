@@ -60,7 +60,10 @@ export default {
 </script>
 
 <style lang="stylus">
+.c-table.c-paper.c-table--calling
+
 .c-table
+  position relative
   cursor pointer
   color #8790a9
   padding 8px
@@ -71,6 +74,18 @@ export default {
   height 180px
   margin-bottom 24px
   transition all .3s ease-in-out
+  &:before
+    border-radius inherit
+    content ' '
+    display block
+    height 100%
+    position absolute
+    top 0
+    opacity 1
+    left 0
+    width 100%
+    z-index -100
+    background linear-gradient(135deg,var(--color-primary),var(--color-secundary))
   &--empty
     display flex
     align-items center
@@ -82,8 +97,8 @@ export default {
   &--reservation
     background #f8f8f8!important
   &--calling
-    background linear-gradient(135deg,var(--color-primary),var(--color-secundary))!important
     color white
+    background-color transparent!important
   &__people
     flex-basis 50%
     font-size 30px
