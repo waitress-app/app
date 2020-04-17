@@ -28,7 +28,7 @@ export default {
       .doc(rootGetters['auth/companyId'])
       .collection('table')
       .doc(getters.tableId)
-      .update({ calling: false })
+      .update({ calling: '' })
   }),
   addPerson: firestoreAction(async ({ rootGetters, getters }, payload) => {
     const customerRef = await db.collection('company')
@@ -54,6 +54,8 @@ export default {
     const order = {
       ...payload,
       item: itemRef,
+      ready: false,
+      delivered: false,
       customers: payload.share.map(elem => getters.table.customers.find(customer => customer.id === elem)),
       orderAt: Timestamp.now(),
       total: payload.item.value * payload.quantity
@@ -66,7 +68,10 @@ export default {
       .doc(rootGetters['auth/companyId'])
       .collection('table')
       .doc(getters.tableId)
-      .update({ orders: FieldValue.arrayUnion(orderRef) })
+      .update({
+        orders: FieldValue.arrayUnion(orderRef),
+        total: FieldValue.increment(order.total)
+      })
   }),
   checkout: firestoreAction(async ({ rootGetters, getters }, payload) => {
     const customerRef = await db.collection('company')
@@ -142,7 +147,7 @@ export default {
       .collection('table')
       .doc(payload)
       .update({
-        calling: false,
+        calling: '',
         code: generateCode(),
         arrivedAt: Timestamp.now()
       })

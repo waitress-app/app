@@ -1,22 +1,22 @@
 <template>
   <CPaper class="c-table c-link"
     @click="$emit('click', table)"
-    :class="{'c-table--empty': !table.people, 'c-table--calling': table.calling, 'c-table--reservation': table.reservation}">
-    <template v-if="table.people > 0" @click="table.calling = true">
+    :class="{'c-table--empty': table.customers.length === 0, 'c-table--calling': table.calling, 'c-table--reservation': table.reservation}">
+    <template v-if="table.arrivedAt" @click="table.calling = true">
       <div class="c-table__people">
-          {{ table.people }} <span class="caption">pessoa{{ table.people > 1 ? 's' : ''}}</span>
+          {{ table.customers.length }} <span class="caption">pessoa{{ table.customers.length > 1 ? 's' : ''}}</span>
       </div>
       <div class="c-table__number">
         {{ table.number }}
       </div>
       <div class="c-table__action" :class="{'c-table__action--calling': table.calling}">
-        <component :is="`c-${table.action}`" />
+        <component :is="`c-${action}`" />
       </div>
       <div class="c-table__arrival caption">
-        {{ table.arrival | hours }}
+        {{ table.arrivedAt | hours }}
       </div>
-      <div class="c-table__billing" v-if="table.billing">
-        {{ table.billing | currency }}
+      <div class="c-table__billing" v-if="table.total">
+        {{ table.total | currency }}
       </div>
     </template>
     <p v-else class="title">
@@ -35,6 +35,7 @@ import CMenu from '@/components/svg/Menu'
 import COrderReady from '@/components/svg/OrderReady'
 import CWaiter from '@/components/svg/Waiter'
 import CWaiting from '@/components/svg/Waiting'
+import CCleaning from '@/components/svg/Cleaning'
 export default {
   components: {
     CPaper,
@@ -43,16 +44,44 @@ export default {
     CMenu,
     COrderReady,
     CWaiter,
-    CWaiting
+    CWaiting,
+    CCleaning
   },
   props: {
     table: {
       type: Object
     }
   },
+  computed: {
+    haveCustomers () {
+      return this.table.customers.length !== 0
+    },
+    haveOrders () {
+      return this.table.orders.length !== 0
+    },
+    havePays () {
+      return this.table.pays.length !== 0
+    },
+    action () {
+      if (this.table.calling) {
+        return this.table.calling
+      }
+      if (this.table.arrivedAt) {
+        if (!this.haveOrders) {
+          return 'menu'
+        }
+        const allOrdersDelivered = this.table.orders.every(elem => elem.delivered)
+        if (!allOrdersDelivered) {
+          const orderReady = this.table.orders.some(elem => elem.ready)
+          return orderReady ? 'order-ready' : 'waiting'
+        }
+      }
+      return 'eating'
+    }
+  },
   filters: {
     hours (value) {
-      const date = new Date(value)
+      const date = value.toDate()
       return `${date.getHours()}:${date.getMinutes()}`
     }
   }
@@ -97,7 +126,8 @@ export default {
   &--reservation
     background #f8f8f8!important
   &--calling
-    color white
+    color white!important
+    border-style solid
     background-color transparent!important
   &__people
     flex-basis 50%

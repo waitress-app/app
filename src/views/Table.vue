@@ -7,7 +7,7 @@
       <div class="c-details-header__number pl-4 title" >
         Mesa #{{ table.number }}
       </div>
-      <CSwitch class="c-details-header__calling" :value="table.calling" @input="turnOffCalling"/>
+      <CSwitch class="c-details-header__calling" :value="table.calling !== ''" @input="turnOffCalling"/>
     </div>
     <CAddCustomer />
     <CCustomerOptions />
