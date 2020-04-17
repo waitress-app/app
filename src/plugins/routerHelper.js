@@ -7,7 +7,17 @@ const tableQuerystrings = [
   'menu',
   'item'
 ]
+const homeQueryStrings = [
+  'tableId'
+]
 
+const makeHistory = (query) => {
+  const queryValue = params.searchParams.get(query)
+  if (queryValue) {
+    urlPath = urlPath.includes('?') ? `${urlPath}&${query}=${queryValue}` : `${urlPath}?${query}=${queryValue}`
+    window.history.pushState('', '', urlPath)
+  }
+}
 let urlPath = window.location.origin
 
 const hasQuerystring = window.location.href.includes('?')
@@ -26,10 +36,9 @@ if (hasPath) {
 
 if (hasQuerystring) {
   for (let query of tableQuerystrings) {
-    const queryValue = params.searchParams.get(query)
-    if (queryValue) {
-      urlPath = urlPath.includes('?') ? `${urlPath}&${query}=${queryValue}` : `${urlPath}?${query}=${queryValue}`
-      window.history.pushState('', '', urlPath)
-    }
+    makeHistory(query)
+  }
+  for (let query of homeQueryStrings) {
+    makeHistory(query)
   }
 }
