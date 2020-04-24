@@ -58,7 +58,11 @@ export default {
       delivered: false,
       customers: payload.share.map(elem => getters.table.customers.find(customer => customer.id === elem)),
       orderAt: Timestamp.now(),
-      total: payload.item.value * payload.quantity
+      total: payload.item.value * payload.quantity,
+      table: {
+        id: getters.tableId,
+        number: getters.table.number
+      }
     }
     const orderRef = await db.collection('company')
       .doc(rootGetters['auth/companyId'])
