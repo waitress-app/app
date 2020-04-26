@@ -2,19 +2,18 @@
   <div>
     <CPaper class="c-login mt-12 mx-auto">
       <div class="c-frame my-6">
-        <transition name="slide-fade">
-          <img class="c-frame__logo" v-if="!user" alt="Waitress logo" src="../assets/logo.png">
+        <transition name="slide-fade" v-if="!$auth.user">
+          <img class="c-frame__logo" alt="Waitress logo" src="../assets/logo.png">
         </transition>
-        <transition name="slide-fade-reverse">
-          <CAvatar class="c-frame__picture" v-if="user" :src="user.picture" alt="User avatar" />
+        <transition name="slide-fade-reverse" v-if="$auth.user">
+          <CAvatar class="c-frame__picture" v-if="$auth.user.picture" :src="$auth.user.picture" alt="User avatar" />
         </transition>
       </div>
       <CButton :disabled="loadingPicture || !user" @click="logIn">{{ $t('login.login') }}</CButton>
-      <p v-if="user" class="c-link caption" @click="refreshUser">
-        {{ $t('login.notMe', { name: user.name }) }}
+      <p v-if="$auth.user" class="c-link caption" @click="$auth.logout">
+        {{ $t('login.notMe', { name: $auth.user.name }) }}
       </p>
     </CPaper>
-    {{ $auth.user }}
     <div class="text-center mt-2">
       <img
         :src="`https://www.countryflags.io/${$i18n.locale.split('-')[1]}/shiny/32.png`"
@@ -64,12 +63,6 @@ export default {
         alert('Error')
       }
     },
-    refreshUser () {
-      this.user = null
-      setTimeout(() => {
-        this.getUser()
-      }, 600)
-    },
     async getUser () {
       this.loadingPicture = true
       // const response = await fetch('https://randomuser.me/api/')
@@ -93,6 +86,7 @@ export default {
     }
   },
   mounted () {
+    console.log(this.$auth)
     this.getUser()
   }
 }

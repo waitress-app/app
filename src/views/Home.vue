@@ -2,13 +2,15 @@
   <div class="c-home">
     <div class="c-navbar">
       <div class="c-navbar__avatar">
-        <CAvatar :src="user.picture" size="64" />
+        <transition name="slide-fade-reverse" v-if="$auth.user.picture">
+          <CAvatar :src="$auth.user.picture" size="64" alt="User avatar" />
+        </transition>
       </div>
       <div class="c-navbar__name pl-4">
         <h2 class="title my-0">
-          {{ user.name }}
+          {{ $auth.user.name }}
         </h2>
-        <p class="c-link my-0 c-navbar__logoff" @click="logOut">
+        <p class="c-link my-0 c-navbar__logoff" @click="$auth.logout">
           sair
         </p>
       </div>
