@@ -8,17 +8,18 @@ const Menu = () => import('@/views/Menu')
 export default [
   {
     path: '/login',
+    alias: '/',
     name: 'login',
     component: Login
   },
   {
     meta: { requiresAuth: true },
-    path: '/',
+    path: '/app',
     component: Home,
     children: [
       {
         path: '/tables',
-        alias: '/',
+        // alias: '/',
         name: 'tables-list',
         component: Tables
       },

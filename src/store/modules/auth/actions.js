@@ -24,12 +24,5 @@ export default {
       await dispatch('waiter/getWaiter', null, { root: true })
       commit('app/toggleLoading', null, { root: true })
     }
-  },
-  currentSession: async ({ getters }) => {
-    if (getters.user !== null) {
-      // verify jwt / refresh token
-      return ''
-    }
-    return ''
   }
 }

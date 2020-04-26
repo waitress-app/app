@@ -14,6 +14,7 @@
         {{ $t('login.notMe', { name: user.name }) }}
       </p>
     </CPaper>
+    {{ $auth.user }}
     <div class="text-center mt-2">
       <img
         :src="`https://www.countryflags.io/${$i18n.locale.split('-')[1]}/shiny/32.png`"
@@ -49,7 +50,10 @@ export default {
     ...mapActions('auth', ['authentication']),
     async logIn () {
       if (!this.user) return
-
+      if (!this.$auth.user) {
+        this.$auth.loginWithRedirect()
+        return
+      }
       try {
         this.loading = true
         await this.authentication(this.user)
