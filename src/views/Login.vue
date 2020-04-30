@@ -55,7 +55,12 @@ export default {
       }
       try {
         this.loading = true
-        await this.authentication(this.user)
+        const token = await this.$auth.getTokenSilently()
+        // console.log(token.__raw)
+        await this.authentication({
+          user: this.user,
+          token: token
+        })
         this.loading = false
       } catch (err) {
         this.loading = false
