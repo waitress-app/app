@@ -3,6 +3,7 @@
     <CLoading />
     <CChangeLocale />
     <CUpdateFound />
+    <CPushNotification />
     <transition name="fade" mode="out-in">
       <router-view/>
     </transition>
@@ -16,7 +17,8 @@ export default {
   components: {
     CLoading,
     CChangeLocale,
-    CUpdateFound: () => import('@/components/UpdateFound')
+    CUpdateFound: () => import('@/components/UpdateFound'),
+    CPushNotification: () => import('@/components/PushNotification')
   },
   created () {
     this.$store.dispatch('auth/connectDb')
