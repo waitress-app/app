@@ -18,6 +18,9 @@ export default {
   },
   methods: {
     ...mapActions('profile', ['setToken']),
+    checkPermision () {
+      this.havePermission = Notification.permission === 'granted'
+    },
     async storeToken (token) {
       await this.setToken({
         uid: this.$auth.user.sub,
@@ -32,6 +35,7 @@ export default {
           messaging.getToken().then((currentToken) => {
             if (currentToken) {
               this.storeToken(currentToken)
+              this.checkPermision()
               return
             }
             console.log('No Instance ID token available. Request permission to generate one.')
@@ -46,7 +50,7 @@ export default {
     }
   },
   created () {
-    this.havePermission = Notification.permission === 'granted'
+    this.checkPermision()
   }
 }
 </script>
