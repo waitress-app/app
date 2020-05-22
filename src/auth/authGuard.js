@@ -2,7 +2,6 @@ import { getInstance } from './authWrapper'
 
 export const authGuard = (to, from, next) => {
   if (to.matched.some(record => record.meta.requiresAuth)) {
-    console.log('entrou')
     const authService = getInstance()
 
     const fn = () => {

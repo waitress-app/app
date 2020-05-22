@@ -3,7 +3,7 @@ export default {
     return state.user
   },
   userId (state) {
-    return state.user ? state.user.id : null
+    return state.user ? state.user.sub : null
   },
   companyId (state) {
     return state.companyId

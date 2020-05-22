@@ -44,7 +44,7 @@ export default {
           })
           return
         }
-        console.log('não tem push')
+        console.log('Push not avaliable')
         this.havePermission = false
       })
     }

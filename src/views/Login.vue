@@ -55,7 +55,6 @@ export default {
       try {
         this.loading = true
         this.token = await this.$auth.getTokenSilently()
-        // console.log(token.__raw)
         await this.authentication({
           user: this.$auth.user,
           token: this.token
