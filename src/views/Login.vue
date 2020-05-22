@@ -9,7 +9,7 @@
           <CAvatar class="c-frame__picture" v-if="$auth.user.picture" :src="$auth.user.picture" alt="User avatar" />
         </transition>
       </div>
-      <CButton :disabled="loadingPicture || !user" @click="logIn">{{ $t('login.login') }}</CButton>
+      <CButton @click="logIn">{{ $t('login.login') }}</CButton>
       <p v-if="$auth.user" class="c-link caption" @click="$auth.logout">
         {{ $t('login.notMe', { name: $auth.user.name }) }}
       </p>
@@ -41,25 +41,24 @@ export default {
   data () {
     return {
       loadingPicture: false,
-      user: null,
-      loading: false
+      loading: false,
+      token: null
     }
   },
   methods: {
     ...mapActions('auth', ['authentication']),
     async logIn () {
-      if (!this.user) return
       if (!this.$auth.user) {
         this.$auth.loginWithRedirect()
         return
       }
       try {
         this.loading = true
-        const token = await this.$auth.getTokenSilently()
+        this.token = await this.$auth.getTokenSilently()
         // console.log(token.__raw)
         await this.authentication({
-          user: this.user,
-          token: token
+          user: this.$auth.user,
+          token: this.token
         })
         this.loading = false
       } catch (err) {
@@ -67,32 +66,12 @@ export default {
         console.log(err)
         alert('Error')
       }
-    },
-    async getUser () {
-      this.loadingPicture = true
-      // const response = await fetch('https://randomuser.me/api/')
-      const response = { ok: false }
-      if (response.ok) { // if HTTP-status is 200-299
-        const { results: userList } = await response.json()
-        const user = userList[0]
-        this.user = {
-          id: user.login.uuid,
-          picture: user.picture.large,
-          name: `${user.name.first}`
-        }
-      } else {
-        this.user = {
-          id: '5151c943-a23e-4a91-89b1-7b2e8feb30cd',
-          picture: 'https://randomuser.me/api/portraits/men/90.jpg',
-          name: 'Freddie'
-        }
-      }
-      this.loadingPicture = false
     }
   },
-  mounted () {
-    console.log(this.$auth)
-    this.getUser()
+  async mounted () {
+    if (this.$route.query.redirect) {
+      this.logIn()
+    }
   }
 }
 </script>
