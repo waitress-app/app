@@ -1,5 +1,5 @@
 <template>
-  <div id="update-info" class="update-container" :class="{'update-container__update-needed': !havePermission}" @click="enableNotifications">
+  <div id="update-info" class="update-container" :class="{'update-container__update-needed': !havePermission && $auth.isAuthenticated}" @click="enableNotifications">
       <span class="update-text">Clique aqui para ativar</span>
       <br>
       <span class="update-text">as notificações</span>
