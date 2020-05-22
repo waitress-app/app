@@ -1,7 +1,7 @@
 <template>
   <div class="c-details" v-if="table !== null">
     <div class="c-details-header">
-      <div class="c-details-header__back-button c-link" @click="$router.push('/')">
+      <div class="c-details-header__back-button c-link" @click="$router.go(-1)">
         <CBackButton />
       </div>
       <div class="c-details-header__number pl-4 title" >
