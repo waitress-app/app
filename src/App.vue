@@ -21,7 +21,9 @@ export default {
     CPushNotification: () => import('@/components/PushNotification')
   },
   created () {
-    this.$store.dispatch('auth/connectDb')
+    if (this.$auth.isAuthenticated) {
+      this.$store.dispatch('auth/connectDb')
+    }
   }
 }
 </script>
