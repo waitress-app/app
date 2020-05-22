@@ -61,7 +61,7 @@ export default {
       this.loading = true
       await this.closeTable()
       this.loading = false
-      this.$router.push('/')
+      this.$router.go(-1)
     }
   },
   computed: {
