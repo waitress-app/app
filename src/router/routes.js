@@ -1,4 +1,5 @@
 const Login = () => import('@/views/Login')
+const Logout = () => import('@/views/Logout')
 const Home = () => import('@/views/Home')
 const Tables = () => import('@/views/Tables')
 const Table = () => import('@/views/Table')
@@ -11,6 +12,11 @@ export default [
     alias: '/',
     name: 'login',
     component: Login
+  },
+  {
+    path: '/logout',
+    name: 'logout',
+    component: Logout
   },
   {
     meta: { requiresAuth: true },

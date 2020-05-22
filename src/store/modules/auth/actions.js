@@ -1,12 +1,6 @@
 import router from '@/router'
 import firebaseAuth from '@/plugins/firebase/auth'
 export default {
-  logOut: ({ commit }) => {
-    // revoke token
-    router.push({ name: 'login' }).then(() => {
-      commit('clear')
-    })
-  },
   authentication: async ({ commit, dispatch }, payload) => {
     try {
       commit('app/setLoading', true, { root: true })

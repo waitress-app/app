@@ -10,7 +10,7 @@
         <h2 class="title my-0">
           {{ $auth.user.name }}
         </h2>
-        <p class="c-link my-0 c-navbar__logoff" @click="$auth.logout">
+        <p class="c-link my-0 c-navbar__logoff" @click="logout()">
           sair
         </p>
       </div>
@@ -55,7 +55,12 @@ export default {
     }
   },
   methods: {
-    ...mapActions('auth', ['logOut'])
+    ...mapActions('auth', ['logOut']),
+    logout () {
+      this.$auth.logout({
+        returnTo: window.location.origin + '/logout'
+      })
+    }
   },
   computed: {
     tab: {
