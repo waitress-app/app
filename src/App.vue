@@ -20,10 +20,12 @@ export default {
     CUpdateFound: () => import('@/components/UpdateFound'),
     CPushNotification: () => import('@/components/PushNotification')
   },
-  created () {
-    if (this.$auth.isAuthenticated) {
-      this.$store.dispatch('auth/connectDb')
-    }
+  mounted () {
+    this.$auth.$on('loaded', () => {
+      if (this.$auth.isAuthenticated) {
+        this.$store.dispatch('auth/connectDb')
+      }
+    })
   }
 }
 </script>
