@@ -3,6 +3,7 @@
     <CLoading />
     <CChangeLocale />
     <CUpdateFound />
+    <CPushNotification />
     <transition name="fade" mode="out-in">
       <router-view/>
     </transition>
@@ -16,7 +17,15 @@ export default {
   components: {
     CLoading,
     CChangeLocale,
-    CUpdateFound: () => import('@/components/UpdateFound')
+    CUpdateFound: () => import('@/components/UpdateFound'),
+    CPushNotification: () => import('@/components/PushNotification')
+  },
+  mounted () {
+    this.$auth.$on('loaded', () => {
+      if (this.$auth.isAuthenticated) {
+        this.$store.dispatch('auth/connectDb')
+      }
+    })
   }
 }
 </script>

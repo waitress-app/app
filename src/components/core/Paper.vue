@@ -35,6 +35,6 @@ export default {
 [data-theme="dark"]
   .c-paper
     border 1px solid #353535
-    background #272727
+    background-color #272727
     box-shadow -3px 2px 4px 1px rgba(14, 14, 14, 0.22)
 </style>

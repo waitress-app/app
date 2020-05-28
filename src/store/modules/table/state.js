@@ -1,4 +1,5 @@
 export default {
+  tables: [],
   table: null,
-  order: '1'
+  tableId: null
 }

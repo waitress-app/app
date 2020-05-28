@@ -98,7 +98,8 @@ export default {
       await this.checkout({
         customer: this.customerId,
         total: this.bill,
-        tips: (this.bill * this.avaliableTips[this.tip].calc) - this.bill
+        tips: (this.bill * this.avaliableTips[this.tip].calc) - this.bill,
+        itemConsumed: this.itemConsumed
       })
       this.$router.go(-2)
     }
@@ -120,10 +121,27 @@ export default {
     customer () {
       return this.open ? this.table.customers.find(elem => elem.id === this.customerId) : {}
     },
+    itemConsumed () {
+      if (!this.storedCustomer.id) return []
+      return this.orders.filter(order => {
+        return order.share.find(customer => customer === this.storedCustomer.id)
+      }).map(elem => {
+        const consumed = {
+          ...elem,
+          item: {
+            ...elem.item,
+            paidFor: elem.share.length === 1 ? `${elem.item.quantity} * ${elem.item.text}` : `${elem.item.quantity} * ${elem.item.text} - (1/${elem.share.length})`
+          },
+          payment: 1 / elem.share.length * elem.total
+        }
+        delete consumed.customers
+        return consumed
+      })
+    },
     bill () {
       if (!this.storedCustomer.id) return 0
-      return this.orders.reduce((acc, order) => {
-        return order.share.find(customer => customer === this.storedCustomer.id) ? acc + (1 / order.share.length * order.total) : acc
+      return this.itemConsumed.reduce((acc, item) => {
+        return item.payment + acc
       }, 0)
     },
     open: {

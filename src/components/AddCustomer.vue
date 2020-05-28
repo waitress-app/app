@@ -108,7 +108,7 @@ export default {
     height 86px
     padding-top 44px
     color #cccccc
-    font-size 32px
+    font-size 30px
     letter-spacing 14px
     font-weight bold
     text-align center

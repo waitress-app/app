@@ -2,18 +2,20 @@
   <div class="c-home">
     <div class="c-navbar">
       <div class="c-navbar__avatar">
-        <CAvatar :src="user.picture" size="64" />
+        <transition name="slide-fade-reverse" v-if="$auth.user.picture">
+          <CAvatar :src="$auth.user.picture" size="64" alt="User avatar" />
+        </transition>
       </div>
       <div class="c-navbar__name pl-4">
         <h2 class="title my-0">
-          {{ user.name }}
+          {{ $auth.user.name }}
         </h2>
-        <p class="c-link my-0 c-navbar__logoff" @click="logOut">
+        <p class="c-link my-0 c-navbar__logoff" @click="logout()">
           sair
         </p>
       </div>
       <div class="c-navbar__tips">
-        <CTips :goal="100" :tips="54.32" />
+        <CTips v-if="waiter" :goal="waiter.goal" :tips="waiter.totalTips" />
       </div>
     </div>
     <CTabs v-model="tab" :items="tabs" dataValue="route" class="mb-8"/>
@@ -53,7 +55,12 @@ export default {
     }
   },
   methods: {
-    ...mapActions('auth', ['logOut'])
+    ...mapActions('auth', ['logOut']),
+    logout () {
+      this.$auth.logout({
+        returnTo: window.location.origin + '/logout'
+      })
+    }
   },
   computed: {
     tab: {
@@ -64,7 +71,8 @@ export default {
         this.$router.push({ name: value })
       }
     },
-    ...mapGetters('auth', ['user'])
+    ...mapGetters('auth', ['user']),
+    ...mapGetters('waiter', ['waiter'])
   }
 }
 </script>
