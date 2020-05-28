@@ -3,7 +3,7 @@
     <ul class="c-order-list">
       <li class="c-order-list__item" v-for="order in orders" :key="order.id">
         <div class="c-order-list__details">
-          <div class="c-order-list__name">
+          <div class="c-order-list__name" v-if="order.item">
             {{ order.quantity }}x - {{ order.item.text }}
           </div>
           <div class="c-order-list__avatars py-2">
@@ -19,7 +19,7 @@
       </li>
       <li class="c-order-list__item" v-for="pay in pays" :key="pay.id">
         <div class="c-order-list__details">
-          <div class="c-order-list__name">
+          <div class="c-order-list__name" v-if="pay.customer">
             {{ pay.customer.name }}
           </div>
           <div class="c-order-list__tips">
@@ -37,8 +37,8 @@
     <div class="headline" v-if="total !== 0">
       Total: {{ total | currency }}
     </div>
-    <div v-else class="text-center mt-5" @click="$router.push('/')">
-      <CButton>
+    <div v-else class="text-center mt-5" >
+      <CButton @click="generateRecipt()">
         Gerar nota
       </CButton>
     </div>
@@ -46,7 +46,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
 import CAvatar from '@/components/core/Avatar'
 import CButton from '@/components/core/Button'
 
@@ -55,10 +55,21 @@ export default {
     CButton,
     CAvatar
   },
+  methods: {
+    ...mapActions('table', ['closeTable']),
+    async generateRecipt () {
+      this.loading = true
+      await this.closeTable()
+      this.loading = false
+      this.$router.go(-1)
+    }
+  },
   computed: {
     ...mapGetters('table', ['orders', 'pays']),
     total () {
-      return [...this.pays, ...this.orders].reduce((acc, elem) => elem.total + acc, 0)
+      const paid = this.pays.reduce((acc, elem) => elem.total + acc, 0)
+      const notPaid = this.orders.reduce((acc, elem) => elem.total + acc, 0)
+      return notPaid - paid
     },
     subTotal () {
       return this.orders.reduce((acc, elem) => elem.total + acc, 0)

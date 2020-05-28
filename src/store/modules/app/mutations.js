@@ -1,5 +1,5 @@
-import { toggle } from '@/utils/vuex'
+import { set } from '@/utils/vuex'
 
 export default {
-  toggleLoading: toggle('loading')
+  setLoading: set('loading')
 }

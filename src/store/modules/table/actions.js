@@ -1,98 +1,171 @@
+import { firestoreAction } from 'vuexfire'
+import db from '@/plugins/firebase/firestore'
+import { firestore } from 'firebase/app'
+const { Timestamp, FieldValue } = firestore
+
 export default {
-  getTable: async ({ commit }) => {
-    try {
-      commit('app/toggleLoading', null, { root: true })
-      // const { data: result } = await Vue.prototype.$http.get(`rchv2`)
-      const result = {
-        id: 'hash-service-id-1',
-        number: '02',
-        code: '123456',
-        people: 1,
-        orders: [
-          {
-            id: '0',
-            quantity: 3,
-            share: ['hash-customer-id-1'],
-            notes: '',
-            item: '3'
-          },
-          {
-            id: '1',
-            quantity: 2,
-            share: ['hash-customer-id-3', 'hash-customer-id-1'],
-            notes: '',
-            item: '4'
-          }
-        ],
-        pays: [
-          {
-            customer: 'hash-customer-id-3',
-            total: -12,
-            tips: 1.2
-          }
-        ],
-        customers: [
-          {
-            id: 'hash-customer-id-1',
-            name: 'Renato Vicente',
-            avatar: 'https://randomuser.me/api/portraits/men/11.jpg'
-          },
-          {
-            id: 'hash-customer-id-2',
-            name: 'Diogo Nakaruma',
-            avatar: 'https://ui-avatars.com/api/?size=128&name=Diogo%20Nakaruma&color=fff&background=8d68f1'
-          },
-          {
-            id: 'hash-customer-id-3',
-            name: 'Karoline Hatamoto',
-            avatar: 'https://randomuser.me/api/portraits/women/11.jpg',
-            paid: true
-          }
-        ],
-        date: '2020-01-26T01:52:17-03:00',
-        calling: true,
-        action: 'waiter'
+  getTables: firestoreAction(({ bindFirestoreRef, rootGetters }) => {
+    return bindFirestoreRef(
+      'tables',
+      db.collection('company')
+        .doc(rootGetters['auth/companyId'])
+        .collection('table')
+        .orderBy('number')
+    )
+  }),
+  getTable: firestoreAction(({ bindFirestoreRef, rootGetters, commit }, payload) => {
+    commit('setTableId', payload)
+    // return bindFirestoreRef(
+    //   'table',
+    //   db.collection('company')
+    //     .doc(rootGetters['auth/companyId'])
+    //     .collection('table')
+    //     .doc(payload)
+    // )
+  }),
+  turnOffCalling: firestoreAction(({ rootGetters, getters }) => {
+    return db.collection('company')
+      .doc(rootGetters['auth/companyId'])
+      .collection('table')
+      .doc(getters.tableId)
+      .update({ calling: '' })
+  }),
+  addPerson: firestoreAction(async ({ rootGetters, getters }, payload) => {
+    const customerRef = await db.collection('company')
+      .doc(rootGetters['auth/companyId'])
+      .collection('customer')
+      .add({
+        id: '',
+        name: payload.name,
+        avatar: `https://ui-avatars.com/api/?size=128&name=${payload.name}&color=fff&background=8d68f1`,
+        arrivalAt: Timestamp.now()
+      })
+    return db.collection('company')
+      .doc(rootGetters['auth/companyId'])
+      .collection('table')
+      .doc(getters.tableId)
+      .update({ customers: FieldValue.arrayUnion(customerRef) })
+  }),
+  requestOrder: firestoreAction(async ({ rootGetters, getters }, payload) => {
+    const itemRef = await db.collection('company')
+      .doc(rootGetters['auth/companyId'])
+      .collection('menu')
+      .doc(payload.item.id)
+    const order = {
+      ...payload,
+      item: itemRef,
+      ready: false,
+      delivered: false,
+      customers: payload.share.map(elem => getters.table.customers.find(customer => customer.id === elem)),
+      orderAt: Timestamp.now(),
+      total: payload.item.value * payload.quantity,
+      table: {
+        id: getters.tableId,
+        number: getters.table.number
       }
-      commit('setTable', result)
-      commit('app/toggleLoading', null, { root: true })
-    } catch (err) {
-      console.log(err)
     }
-  },
-  addPerson: async ({ commit }, payload) => {
-    // await someApi()
-    commit('push_person', {
-      id: `hash-customer-id-${Math.floor(Math.random() * 10000)}`,
-      name: payload.name,
-      avatar: `https://ui-avatars.com/api/?size=128&name=${payload.name}&color=fff&background=8d68f1`,
-      date: new Date().toISOString()
-    })
-  },
-  requestOrder: async ({ commit }, payload) => {
-    try {
-      commit('app/toggleLoading', null, { root: true })
-      // const { data: result } = await Vue.prototype.$http.get(`17k4ti`)
-      commit('setOrder', {
-        ...payload,
-        date: new Date().toISOString()
+    const orderRef = await db.collection('company')
+      .doc(rootGetters['auth/companyId'])
+      .collection('order')
+      .add(order)
+    return db.collection('company')
+      .doc(rootGetters['auth/companyId'])
+      .collection('table')
+      .doc(getters.tableId)
+      .update({
+        orders: FieldValue.arrayUnion(orderRef),
+        total: FieldValue.increment(order.total)
       })
-      commit('app/toggleLoading', null, { root: true })
-    } catch (err) {
-      console.log(err)
+  }),
+  checkout: firestoreAction(async ({ rootGetters, getters }, payload) => {
+    const customerRef = await db.collection('company')
+      .doc(rootGetters['auth/companyId'])
+      .collection('customer')
+      .doc(payload.customer)
+    const payment = {
+      ...payload,
+      customer: customerRef,
+      paidAt: Timestamp.now()
     }
-  },
-  checkout: async ({ commit }, payload) => {
-    console.log(payload)
-    try {
-      commit('app/toggleLoading', null, { root: true })
-      commit('setPays', {
-        ...payload,
-        total: payload.total * -1,
-        date: new Date().toISOString()
+    const paymentRef = await db.collection('company')
+      .doc(rootGetters['auth/companyId'])
+      .collection('pays')
+      .add(payment)
+    return db.collection('company')
+      .doc(rootGetters['auth/companyId'])
+      .collection('table')
+      .doc(getters.tableId)
+      .update({ pays: FieldValue.arrayUnion(paymentRef) })
+  }),
+  closeTable: firestoreAction(async ({ rootGetters, getters }, payload) => {
+    // Refactor promisse.all
+    const tips = getters.table.pays.reduce((acc, elem) => acc + elem.tips, 0)
+    if (tips) {
+      await db.collection('company')
+        .doc(rootGetters['auth/companyId'])
+        .collection('waiter')
+        .doc(rootGetters['auth/userId'])
+        .collection('tips')
+        .add({
+          tips,
+          date: Timestamp.now()
+        })
+      await db.collection('company')
+        .doc(rootGetters['auth/companyId'])
+        .collection('waiter')
+        .doc(rootGetters['auth/userId'])
+        .update({
+          totalTips: FieldValue.increment(tips)
+        })
+    }
+
+    await db.collection('company')
+      .doc(rootGetters['auth/companyId'])
+      .collection('receipts')
+      .add(getters.table)
+    return db.collection('company')
+      .doc(rootGetters['auth/companyId'])
+      .collection('table')
+      .doc(getters.tableId)
+      .update({
+        customers: [],
+        pays: [],
+        orders: [],
+        calling: FieldValue.delete(),
+        arrivedAt: FieldValue.delete(),
+        code: FieldValue.delete()
       })
-      commit('app/toggleLoading', null, { root: true })
-    } catch (err) {
-      console.log(err)
+  }),
+  openTable: firestoreAction(({ rootGetters }, payload) => {
+    const generateCode = () => {
+      const length = 6
+      const charset = 'ABCDEFGHJKLMNPQRSTUVWXYZ123456789'
+      let retVal = ''
+      for (var i = 0, n = charset.length; i < length; ++i) {
+        retVal += charset.charAt(Math.floor(Math.random() * n))
+      }
+      return retVal
     }
-  }
+    return db.collection('company')
+      .doc(rootGetters['auth/companyId'])
+      .collection('table')
+      .doc(payload)
+      .update({
+        calling: '',
+        code: generateCode(),
+        arrivedAt: Timestamp.now()
+      })
+  }),
+  addTable: firestoreAction(({ rootGetters }, payload) => {
+    const table = {
+      ...payload,
+      customers: [],
+      pays: [],
+      orders: []
+    }
+    return db.collection('company')
+      .doc(rootGetters['auth/companyId'])
+      .collection('table')
+      .add(table)
+  })
 }

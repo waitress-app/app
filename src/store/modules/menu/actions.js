@@ -1,13 +1,19 @@
-import Vue from 'vue'
+import { firestoreAction } from 'vuexfire'
+import db from '@/plugins/firebase/firestore'
+
 export default {
-  getMenu: async ({ commit }) => {
-    try {
-      commit('app/toggleLoading', null, { root: true })
-      const { data: result } = await Vue.prototype.$http.get(`menu-items.json`)
-      commit('setMenu', result)
-      commit('app/toggleLoading', null, { root: true })
-    } catch (err) {
-      console.log(err)
-    }
-  }
+  getMenu: firestoreAction(({ bindFirestoreRef, rootGetters }) => {
+    return bindFirestoreRef(
+      'menu',
+      db.collection('company')
+        .doc(rootGetters['auth/companyId'])
+        .collection('menu')
+    )
+  }),
+  addItem: firestoreAction(({ rootGetters }, payload) => {
+    return db.collection('company')
+      .doc(rootGetters['auth/companyId'])
+      .collection('menu')
+      .add(payload)
+  })
 }

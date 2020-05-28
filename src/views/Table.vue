@@ -1,13 +1,13 @@
 <template>
   <div class="c-details" v-if="table !== null">
     <div class="c-details-header">
-      <div class="c-details-header__back-button c-link" @click="$router.push('/')">
+      <div class="c-details-header__back-button c-link" @click="$router.go(-1)">
         <CBackButton />
       </div>
       <div class="c-details-header__number pl-4 title" >
         Mesa #{{ table.number }}
       </div>
-      <CSwitch class="c-details-header__calling" :value="table.calling" @input="turnOffCalling"/>
+      <CSwitch class="c-details-header__calling" :value="table.calling !== ''" @input="turnOffCalling"/>
     </div>
     <CAddCustomer />
     <CCustomerOptions />
@@ -49,10 +49,7 @@ export default {
     }
   },
   methods: {
-    ...mapActions('table', ['getTable']),
-    turnOffCalling () {
-      this.table.calling = false
-    }
+    ...mapActions('table', ['getTable', 'turnOffCalling'])
   },
   computed: {
     ...mapGetters('table', ['table'])
