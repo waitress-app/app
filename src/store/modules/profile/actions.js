@@ -9,6 +9,6 @@ export default {
         notificationTokens: {
           [payload.token]: true
         }
-      })
+      }, { merge: true })
   }
 }
