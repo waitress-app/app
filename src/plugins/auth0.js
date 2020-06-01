@@ -5,7 +5,7 @@ import router from '@/router'
 Vue.use(Auth0Plugin, {
   domain: process.env.VUE_APP_AUTH0_DOMAIN,
   clientId: process.env.VUE_APP_AUTH0_CLIENT_ID,
-  audience: 'https://us-central1-waitress-6bc72.cloudfunctions.net/auth',
+  audience: process.env.VUE_APP_AUTH0_AUDIENCE,
   onRedirectCallback: appState => {
     router.push(
       appState && appState.targetUrl
