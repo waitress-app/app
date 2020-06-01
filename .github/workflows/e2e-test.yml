@@ -15,16 +15,14 @@ jobs:
       with:
         node-version: 10.x
     - name: yarn install && test
-      with:
-        env: true
       env: 
         CYPRESS_BASE_URL: 'http://localhost:8080'
-        CYPRESS_AUTH_AUDIENCE: 'https://us-central1-waitress-6bc72.cloudfunctions.net/auth'
-        CYPRESS_AUTH_URL: 'https://waitress.auth0.com/oauth/token'
-        CYPRESS_AUTH_CLIENT_ID: 'VUJXuxrPNlVePh3kIUENEkE9v5B4gKoM'
-        CYPRESS_AUTH_CLIENT_SECRET: ${{ secrets.AUTH_CLIENT_SECRET }}
-        CYPRESS_AUTH_USERNAME: 'e2e-testing@mydomain.com'
-        CYPRESS_AUTH_PASSWORD:  ${{ secrets.TEST_USER_PASSWORD }}
+        CYPRESS_auth_audience: 'https://us-central1-waitress-6bc72.cloudfunctions.net/auth'
+        CYPRESS_auth_url: 'https://waitress.auth0.com/oauth/token'
+        CYPRESS_auth_client_id: 'VUJXuxrPNlVePh3kIUENEkE9v5B4gKoM'
+        CYPRESS_auth_client_secret: ${{ secrets.AUTH_CLIENT_SECRET }}
+        CYPRESS_auth_username: 'e2e-testing@mydomain.com'
+        CYPRESS_auth_password:  ${{ secrets.TEST_USER_PASSWORD }}
       run: |
         yarn install
         yarn test:e2e --headless
