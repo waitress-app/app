@@ -89,7 +89,8 @@ export default {
 </script>
 
 <style lang="stylus">
-.c-table.c-paper.c-table--calling
+.c-table.c-paper.c-table--calling:before
+  opacity 1
 
 .c-table
   position relative
@@ -110,7 +111,7 @@ export default {
     height 100%
     position absolute
     top 0
-    opacity 1
+    opacity 0
     left 0
     width 100%
     z-index -100
@@ -122,7 +123,6 @@ export default {
     text-align center
     >p
       flex 1
-      color #e5e5e5
   &--reservation
     background #f8f8f8!important
   &--calling
