@@ -16,13 +16,9 @@
 </p>
 
 <p align="center">
-  <a href="https://waitress.netlify.app">
-    live app
-  </a>
+  <a href="https://waitress.netlify.app">live app</a>
   -
-  <a href="https://waitress-storybook.netlify.app">
-    storybook
-  </a>
+  <a href="https://waitress-storybook.netlify.app">storybook</a>
 </p>
 
 Waitress is an app made for restaurantes to make life easier for magangers, waiters, cooks and clients
