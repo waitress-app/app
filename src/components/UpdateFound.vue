@@ -1,5 +1,5 @@
 <template>
-  <div id="update-info" class="update-container" :class="{'update-container__update-needed': updateExists}" onclick="location.reload(true)" @click="refreshApp">
+  <div id="update-info" class="update-container" :class="{'update-container__update-needed': updateExists}" @click="refreshApp">
       <span class="update-text">Novas atualizações foram encontradas</span>
       <br>
       <span class="update-text">Clique aqui e atualize a página</span>
