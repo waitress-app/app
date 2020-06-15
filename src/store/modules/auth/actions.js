@@ -4,11 +4,13 @@ export default {
   authentication: async ({ commit, dispatch }, payload) => {
     try {
       commit('app/setLoading', true, { root: true })
-      // const url = 'http://localhost:8082/waitress-6bc72/us-central1/auth'
-      const url = 'https://us-central1-waitress-6bc72.cloudfunctions.net/auth'
+      const url =
+        process.env.NODE_ENV === 'production'
+          ? 'https://us-east1-waitress-6bc72.cloudfunctions.net/auth'
+          : 'http://localhost:8082/waitress-6bc72/us-east1/auth'
       const response = await fetch(url + '/firebase', {
         headers: {
-          'Authorization': `Bearer ${payload.token}`
+          Authorization: `Bearer ${payload.token}`
         }
       })
       const data = await response.json()
