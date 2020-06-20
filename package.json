@@ -5,19 +5,19 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
+    "test:unit": "vue-cli-service test:unit",
+    "test:e2e": "vue-cli-service test:e2e --mode e2e",
     "lint": "vue-cli-service lint",
     "build-storybook": "build-storybook",
     "i18n:report": "vue-cli-service i18n:report --src './src/**/*.?(js|vue)' --locales './src/locales/**/*.json'",
-    "storybook": "start-storybook -p 6006",
-    "test:e2e": "vue-cli-service test:e2e --mode e2e",
-    "test:unit": "vue-cli-service test:unit"
+    "storybook": "start-storybook -p 6006"
   },
   "dependencies": {
     "@auth0/auth0-spa-js": "^1.7.0",
     "@sentry/browser": "^5.17.0",
     "@sentry/integrations": "^5.17.0",
     "axios": "^0.19.2",
-    "core-js": "^3.4.4",
+    "core-js": "^3.6.5",
     "firebase": "^7.14.0",
     "lottie-web": "^5.6.6",
     "register-service-worker": "^1.6.2",
@@ -35,7 +35,7 @@
     "@storybook/addon-links": "^5.3.17",
     "@storybook/addons": "^5.3.17",
     "@storybook/vue": "^5.3.17",
-    "@vue/cli-plugin-babel": "^4.1.0",
+    "@vue/cli-plugin-babel": "~4.4.0",
     "@vue/cli-plugin-e2e-cypress": "^4.1.2",
     "@vue/cli-plugin-eslint": "^4.1.0",
     "@vue/cli-plugin-pwa": "^4.3.1",
