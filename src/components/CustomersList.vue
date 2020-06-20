@@ -4,7 +4,7 @@
       <CAvatar :src="customer.avatar" size="48" class="c-link" @click="$router.push({query: { customer: customer.id}})"/>
     </div>
     <div class="c-customers__avatar c-link" @click="$router.push({query: { newcustomer: true }})">
-      <CAvatar :src="`https://ui-avatars.com/api/?size=128&name=%2B&color=${color}&background=${background}`" size="48"/>
+      <CAvatar :src="`https://ui-avatars.com/api/?size=128&name=%2B&color=${color.split('#')[1]}&background=${background}`" size="48"/>
     </div>
   </div>
 </template>
