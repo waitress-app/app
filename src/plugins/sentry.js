@@ -4,9 +4,8 @@ import * as Integrations from '@sentry/integrations'
 
 if (process.env.NODE_ENV === 'production') {
   Sentry.init({
-    dsn: 'https://0bb2c07112e8475ca23956a339545ec0@sentry.io/5175253',
+    dsn: 'https://471b51bba4864086b90115c24e0a0279@o410281.ingest.sentry.io/5284061',
     integrations: [new Integrations.Vue({ Vue, attachProps: true })],
-    release: 'waitress@1.0.1-beta',
     environment: process.env.VUE_APP_ENV
   })
 }
