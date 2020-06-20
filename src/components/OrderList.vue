@@ -14,7 +14,7 @@
           </div>
         </div>
         <div class="c-order-list__total">
-          {{ order.total }}
+          {{ order.total | currency }}
         </div>
       </li>
       <li class="c-order-list__item" v-for="pay in pays" :key="pay.id">
