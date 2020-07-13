@@ -4,21 +4,13 @@
   </a>
 </p>
 <p align="center">
-  <a href='https://github.com/Renato66/waitress/actions?query=workflow%3A"Build+test"'>
-    <img alt="Build test" src="https://github.com/Renato66/waitress/workflows/Build%20test/badge.svg" />
-  </a>
-   <a href='https://github.com/Renato66/waitress/actions?query=workflow%3A"Unit+test"'>
-    <img alt="Unit test" src="https://github.com/Renato66/waitress/workflows/Unit%20test/badge.svg" />
-  </a>
-   <a href='https://github.com/Renato66/waitress/actions?query=workflow%3A"E2E+test"'>
-    <img alt="E2E test" src="https://github.com/Renato66/waitress/workflows/E2E%20test/badge.svg" />
-  </a>
-</p>
-
-<p align="center">
-  <a href="https://waitress.netlify.app">live app</a>
-  -
-  <a href="https://waitress-storybook.netlify.app">storybook</a>
+  <a href="https://waitress.netlify.app"><img src="https://img.shields.io/static/v1?label=>&message=Live%20App&color=blue" alt="Live App"></a>
+  <a href="https://waitress-storybook.netlify.app"><img src="https://img.shields.io/static/v1?label=>&message=Storybook&color=blue" alt="Storybook"></a>
+  <a href="https://waitress-app.statuspage.io"><img src="https://img.shields.io/static/v1?label=>&message=Status&color=blue" alt="Status"></a>
+  <a href='https://github.com/Renato66/waitress/actions?query=workflow%3A"Build+test"'><img alt="Build test" src="https://github.com/Renato66/waitress/workflows/Build%20test/badge.svg" /></a>
+   <a href='https://github.com/Renato66/waitress/actions?query=workflow%3A"Unit+test"'><img alt="Unit test" src="https://github.com/Renato66/waitress/workflows/Unit%20test/badge.svg" /></a>
+   <a href='https://github.com/Renato66/waitress/actions?query=workflow%3A"E2E+test"'><img alt="E2E test" src="https://github.com/Renato66/waitress/workflows/E2E%20test/badge.svg" /></a>
+  
 </p>
 
 Waitress is an app made for restaurantes to make life easier for magangers, waiters, cooks and clients
