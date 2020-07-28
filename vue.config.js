@@ -4,7 +4,33 @@ module.exports = {
     themeColor: '#9165f2',
     msTileColor: '#FFFFFF',
     manifestOptions: {
-      background_color: '#FFFFFF'
+      background_color: '#FFFFFF',
+      shortcuts: [
+        {
+          name: 'Abrir menu',
+          short_name: 'Menu',
+          url: '/menu?utm_source=homescreen',
+          icons: [
+            {
+              src: 'img/shortcuts/menu-192x192.png',
+              sizes: '192x192',
+              type: 'image/png'
+            }
+          ]
+        },
+        {
+          name: 'Abrir pedidos',
+          short_name: 'Pedidos',
+          url: '/orders?utm_source=homescreen',
+          icons: [
+            {
+              src: 'img/shortcuts/orders-192x192.png',
+              sizes: '192x192',
+              type: 'image/png'
+            }
+          ]
+        }
+      ]
     },
     iconPaths: {
       favicon32: 'img/icons/favicon-32x32.png',
