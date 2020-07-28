@@ -23,7 +23,7 @@ export default {
       return document.documentElement.getAttribute('data-theme') === 'dark' ? '272727' : 'f3f3f3'
     },
     color () {
-      return document.documentElement.getAttribute('data-theme') === 'dark' ? 'f3f3f3' : getComputedStyle(document.documentElement).getPropertyValue('--color-primary')
+      return document.documentElement.getAttribute('data-theme') === 'dark' ? 'f3f3f3' : getComputedStyle(document.documentElement).getPropertyValue('--color-primary').split('#')[1]
     }
   }
 }
